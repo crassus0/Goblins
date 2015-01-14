@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///G:/MICROSOFT VISUAL STUDIO 12.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/CodeGenLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Code Generation/Text Transformation Log">
+  <MessageClass Name="Message" Label="Message" Option="Show informational messages" />
+  <MessageClass Name="Warning" Label="Warning" Option="Show warnings" />
+  <MessageClass Name="Error" Label="Error" Option="Show errors" />
+  <MessageClass Name="Property" Label="Property" Option="Show metadata" />
+  <MessageClass Name="Diagnostic" Label="Message" Option="Show diagnostic messages" />
+  <Message Timestamp="2014-12-02T16:03:23" Importance="High" Text="Code generation or text transformation started." />
+  <Message Timestamp="2014-12-02T16:03:23" Importance="Diagnostic" Text="Name = ClassTemplate" />
+  <Message Timestamp="2014-12-02T16:03:23" Importance="Diagnostic" Text="Overwrite = True" />
+  <Message Timestamp="2014-12-02T16:03:23" Importance="Diagnostic" Text="ProjectPath = ..\GoblinsModelsProjectLib\GoblinsModelsProjectLib.csproj" />
+  <Message Timestamp="2014-12-02T16:03:23" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2014-12-02T16:03:23" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2014-12-02T16:03:23" Importance="Diagnostic" Text="TemplateFilePath = G:\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
+  <Message Timestamp="2014-12-02T16:03:23" Importance="Diagnostic" Text="ResolvedTemplateFilePath = G:\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\ClassTemplate.t4" />
+  <Message Timestamp="2014-12-02T16:03:23" Importance="Medium" Text="GoblinsModelsProject's Text Template Binding: 'ClassTemplate' will apply ClassTemplate.t4 to: 'GoblinsModelsProject::UnityEngine::MonoBehaviour' -  (Class), 'GoblinsModelsProject::UnityEngine::GameObject' -  (Class), 'GoblinsModelsProject::BasicSteeringStrategy' -  (Class), 'GoblinsModelsProject::Utility' -  (Class), 'GoblinsModelsProject::BasicSteering' -  (Class), 'GoblinsModelsProject::BasicLocomotion' -  (Class), 'GoblinsModelsProject::GoblinMoveStrategy' -  (Class), 'GoblinsModelsProject::GoblinFloatStartegy' -  (Class), 'GoblinsModelsProject::PhysicsObject' -  (Class), 'GoblinsModelsProject::GoblinLocomotion' -  (Class), 'GoblinsModelsProject::HitInfo' -  (Class), 'GoblinsModelsProject::GoblinSteering' -  (Class), 'GoblinsModelsProject::Terrain' -  (Class) " />
+  <Message Timestamp="2014-12-02T16:03:24" Importance="Medium" Text="'GoblinsModelsProject::UnityEngine::MonoBehaviour' -  (Class) : success (file replaced) - G:\Unrewealed\Goblins\GoblinsModelsProjectLib\GeneratedCode\UnityEngine\MonoBehaviour.cs" />
+  <Message Timestamp="2014-12-02T16:03:24" Importance="Medium" Text="'GoblinsModelsProject::UnityEngine::GameObject' -  (Class) : success (file replaced) - G:\Unrewealed\Goblins\GoblinsModelsProjectLib\GeneratedCode\UnityEngine\GameObject.cs" />
+  <Message Timestamp="2014-12-02T16:03:24" Importance="Medium" Text="'GoblinsModelsProject::BasicSteeringStrategy' -  (Class) : success (file replaced) - G:\Unrewealed\Goblins\GoblinsModelsProjectLib\GeneratedCode\BasicSteeringStrategy.cs" />
+  <Message Timestamp="2014-12-02T16:03:24" Importance="Medium" Text="'GoblinsModelsProject::Utility' -  (Class) : success (file replaced) - G:\Unrewealed\Goblins\GoblinsModelsProjectLib\GeneratedCode\Utility.cs" />
+  <Message Timestamp="2014-12-02T16:03:24" Importance="Medium" Text="'GoblinsModelsProject::BasicSteering' -  (Class) : success (file replaced) - G:\Unrewealed\Goblins\GoblinsModelsProjectLib\GeneratedCode\BasicSteering.cs" />
+  <Message Timestamp="2014-12-02T16:03:24" Importance="Medium" Text="'GoblinsModelsProject::BasicLocomotion' -  (Class) : success (file replaced) - G:\Unrewealed\Goblins\GoblinsModelsProjectLib\GeneratedCode\BasicLocomotion.cs" />
+  <Message Timestamp="2014-12-02T16:03:24" Importance="Medium" Text="'GoblinsModelsProject::GoblinMoveStrategy' -  (Class) : success (file replaced) - G:\Unrewealed\Goblins\GoblinsModelsProjectLib\GeneratedCode\GoblinMoveStrategy.cs" />
+  <Message Timestamp="2014-12-02T16:03:24" Importance="Medium" Text="'GoblinsModelsProject::GoblinFloatStartegy' -  (Class) : success (file replaced) - G:\Unrewealed\Goblins\GoblinsModelsProjectLib\GeneratedCode\GoblinFloatStartegy.cs" />
+  <Message Timestamp="2014-12-02T16:03:24" Importance="Medium" Text="'GoblinsModelsProject::PhysicsObject' -  (Class) : success (file replaced) - G:\Unrewealed\Goblins\GoblinsModelsProjectLib\GeneratedCode\PhysicsObject.cs" />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Medium" Text="'GoblinsModelsProject::GoblinLocomotion' -  (Class) : success (file replaced) - G:\Unrewealed\Goblins\GoblinsModelsProjectLib\GeneratedCode\GoblinLocomotion.cs" />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'GoblinsModelsProject::HitInfo' -  (Class): no file generated because the 'AppliesToElement' method of the template 'ClassTemplate.t4' evaluated to false." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Medium" Text="'GoblinsModelsProject::GoblinSteering' -  (Class) : success (file replaced) - G:\Unrewealed\Goblins\GoblinsModelsProjectLib\GeneratedCode\GoblinSteering.cs" />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Medium" Text="'GoblinsModelsProject::Terrain' -  (Class) : success (file replaced) - G:\Unrewealed\Goblins\GoblinsModelsProjectLib\GeneratedCode\Terrain.cs" />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="Name = StructTemplate" />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="Overwrite = True" />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="ProjectPath = ..\GoblinsModelsProjectLib\GoblinsModelsProjectLib.csproj" />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="TargetDirectory = GeneratedCode\{PackageStructure}" />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="TargetName = {Name}" />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="TemplateFilePath = G:\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="ResolvedTemplateFilePath = G:\MICROSOFT VISUAL STUDIO 12.0\COMMON7\IDE\EXTENSIONS\MICROSOFT\ARCHITECTURE TOOLS\EXTENSIBILITY\Templates\Text\StructTemplate.t4" />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Medium" Text="GoblinsModelsProject's Text Template Binding: 'StructTemplate' will apply StructTemplate.t4 to: 'GoblinsModelsProject::UnityEngine::MonoBehaviour' -  (Class), 'GoblinsModelsProject::UnityEngine::GameObject' -  (Class), 'GoblinsModelsProject::BasicSteeringStrategy' -  (Class), 'GoblinsModelsProject::Utility' -  (Class), 'GoblinsModelsProject::BasicSteering' -  (Class), 'GoblinsModelsProject::BasicLocomotion' -  (Class), 'GoblinsModelsProject::GoblinMoveStrategy' -  (Class), 'GoblinsModelsProject::GoblinFloatStartegy' -  (Class), 'GoblinsModelsProject::PhysicsObject' -  (Class), 'GoblinsModelsProject::GoblinLocomotion' -  (Class), 'GoblinsModelsProject::HitInfo' -  (Class), 'GoblinsModelsProject::GoblinSteering' -  (Class), 'GoblinsModelsProject::Terrain' -  (Class) " />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'GoblinsModelsProject::UnityEngine::MonoBehaviour' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'GoblinsModelsProject::UnityEngine::GameObject' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'GoblinsModelsProject::BasicSteeringStrategy' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'GoblinsModelsProject::Utility' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'GoblinsModelsProject::BasicSteering' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'GoblinsModelsProject::BasicLocomotion' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'GoblinsModelsProject::GoblinMoveStrategy' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'GoblinsModelsProject::GoblinFloatStartegy' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'GoblinsModelsProject::PhysicsObject' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'GoblinsModelsProject::GoblinLocomotion' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Medium" Text="'GoblinsModelsProject::HitInfo' -  (Class) : success (file replaced) - G:\Unrewealed\Goblins\GoblinsModelsProjectLib\GeneratedCode\HitInfo.cs" />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'GoblinsModelsProject::GoblinSteering' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'GoblinsModelsProject::Terrain' -  (Class): no file generated because the 'AppliesToElement' method of the template 'StructTemplate.t4' evaluated to false." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="The selection included 10 elements which were not bound to a template." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'73849467-9153-4caa-93ea-fdc9fe774aad' -  (Generalization): no bound template." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'a0019627-6742-4b9a-af45-dc8f42eb7072' -  (Generalization): no bound template." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'GoblinsModelsProject::UnityEngine' -  (Package): no bound template." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'6f3bddd1-5ab2-4ef8-84c8-8b1f9480de43' -  (Generalization): no bound template." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'GoblinsModelsProject::' -  (Dependency): no bound template." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'45649ee8-bf1c-4932-bc40-7b8e67653a90' -  (Generalization): no bound template." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'6e4ea8a1-aa26-43ce-bd6a-e273f6e2a866' -  (Generalization): no bound template." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'5a098040-6533-4708-8370-bfab988603ed' -  (Generalization): no bound template." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'5efb7a71-bcd0-4fcf-b3c1-0740aea70188' -  (Generalization): no bound template." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="Diagnostic" Text="'206cc572-f8c8-4d78-84a5-7f4f51fac336' -  (Generalization): no bound template." />
+  <Message Timestamp="2014-12-02T16:03:25" Importance="High" Text="Code generation complete. Errors: 0. Warnings: 0." />
+</Log>
