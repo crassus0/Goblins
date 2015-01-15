@@ -14,59 +14,24 @@ public class Terrain : PhysicsObject
 {
     
     static List<Terrain> s_terrainComponents= new List<Terrain>();
-    public static Vector2 GetTerrainNormal(float x)
-    { 
-        Vector2 direction=Vector2.zero;
-        Vector2 point1 = Vector2.zero;
-        Vector2 point2 = Vector2.zero;
-        for(int i=0; i<s_terrainComponents.Count; i++)
-        {
-            int position = s_terrainComponents[i].GetPointPosition(x);
-            if(position==0 && i>0)
-            {
-                point1 = s_terrainComponents[i - 1].GetComponent<EdgeCollider2D>().points[s_terrainComponents[i - 1].GetComponent<EdgeCollider2D>().points.Length - 2];
-                point2= s_terrainComponents[i].GetComponent<EdgeCollider2D>().points[0];
-                direction=(point2-point1).normalized;
-            }
-            if(position>0)
-            {
-                point1 = s_terrainComponents[i].GetComponent<EdgeCollider2D>().points[position - 1];
-                point2 = s_terrainComponents[i].GetComponent<EdgeCollider2D>().points[position];
-                direction = (point2 - point1).normalized;
-            }
-
-        }
-        Vector2 normal = new Vector2(direction.y, -direction.x);
-        if (normal.y < 0)
-            normal = -normal;
-        Vector3 midpoint=new Vector3(point1.x+point2.x, point1.y+point2.y)/2;
-        Debug.DrawRay(midpoint, new Vector3(normal.x, normal.y), Color.red);
-        return normal;
-    }
-    int GetPointPosition(float x)
+    public static ScreenBounds GetScreenBounds()
     {
-        float xCoord=x-transform.position.x;
-        EdgeCollider2D collider = GetComponent<EdgeCollider2D>();
-        int position=-1;
-        if (xCoord < collider.points[0][0])
-        { 
-            position = 0; 
-        }
-        else
-        {
-            for (int i = 1; i < collider.points.Length; i++)
-            {
-                if (xCoord < collider.points[i][0] && xCoord > collider.points[i - 1][0])
-                    position = i - 1;
-            }
-        }
-        return position;
+        const float bound = 0.1f;
+        s_terrainComponents.ForEach(x => Debug.Log(x.transform.position));
+        ScreenBounds bounds = new ScreenBounds();
+        Terrain element = s_terrainComponents[0];
+        bounds.left = element.transform.position.x+bound;
+        bounds.bottom = element.transform.position.y+bound;
+        bounds.top = element.transform.position.x+element.GetComponent<TerrainEditor2D>().Height-bound;
+        element = s_terrainComponents[s_terrainComponents.Count - 1];
+        bounds.right = element.transform.position.x + element.GetComponent<TerrainEditor2D>().Width-bound;
+        return bounds;
     }
     protected override void Start()
     {
         if (!s_terrainComponents.Contains(this))
             s_terrainComponents.Add(this);
-        s_terrainComponents.OrderBy(x => x.transform.position.x);
+        s_terrainComponents=s_terrainComponents.OrderBy(x => x.transform.position.x).ToList();
     }
 	protected override void OnCollisionEnter2D(Collision2D collision)
 	{
