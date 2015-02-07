@@ -112,7 +112,7 @@ public class TerrainEditor2D : MonoBehaviour
         gameObject.GetComponent<MeshFilter>().mesh = pathMesh;
 
         UpdateCollider();
-
+        
         if (CreateCap)
             GenerateCap(GetVertsPos());
         else
@@ -219,7 +219,19 @@ public class TerrainEditor2D : MonoBehaviour
         }
         gameObject.GetComponent<EdgeCollider2D>().points = points;
     }
-
+    public void LoadMesh(Vector2[] colliderPoints)
+    {
+        (collider2D as EdgeCollider2D).points = colliderPoints;
+        Vector3[] meshVertPositions = new Vector3[colliderPoints.Length * 2];
+        for(int i=0; i<colliderPoints.Length; i++)
+        {
+            meshVertPositions[2 * i] = colliderPoints[i];
+            meshVertPositions[2 * i+1] = new Vector3(colliderPoints[i].x, 0,0);
+        }
+        EditMesh(meshVertPositions);
+        if (CreateCap)
+            GenerateCap(GetVertsPos());
+    }
     public void EditMesh(Vector3[] newVertsPos)
     {
         //DestroyImmediate(gameObject.GetComponent<MeshFilter>().sharedMesh);

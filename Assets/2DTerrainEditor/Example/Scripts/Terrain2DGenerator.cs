@@ -17,7 +17,7 @@ public class Terrain2DGenerator : MonoBehaviour
 
 	void Start () 
     {
-        CreateNextTerrain2D(Vector2.zero); //Create first terrain
+        //CreateNextTerrain2D(Vector2.zero); //Create first terrain
 	}
 
     void Update()

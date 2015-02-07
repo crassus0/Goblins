@@ -1,17 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+//[ExecuteInEditMode]
 public class CameraControls : MonoBehaviour
 {
     public float perspectiveZoomSpeed = 0.5f;        // The rate of change of the field of view in perspective mode.
     public float orthoZoomSpeed = 0.5f;        // The rate of change of the orthographic size in orthographic mode.
     public float moveSpeed = 0.01f;
+    public static float m_margins = 10;
     Vector3 m_dragOrigin;
     ScreenBounds m_bounds;
     float m_ratio;
-    void Update()
+    void OnDrawGizmos()
     {
-        // If there are two touches on the device...
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(new Vector3(m_margins, 0, 0), new Vector3(0, 100, 0));
+    }
+    public void Update()
+    {
+        //if (!Application.isPlaying) return;
+        if (GUIMachine.SelectedButton != null) return;
  #if (UNITY_IPHONE || UNITY_ANDROID)&&!UNITY_EDITOR
         if (Input.touchCount == 2)
         {
@@ -32,7 +39,7 @@ public class CameraControls : MonoBehaviour
 
             // If the camera is orthographic...
             // ... change the orthographic size based on the change in distance between the touches.
-            camera.orthographicSize += deltaMagnitudeDiff * orthoZoomSpeed;
+            camera.orthographicSize += deltaMagnitudeDiff * orthoZoomSpeed*0.1f;
 
             // Make sure the orthographic size never drops below zero.
             camera.orthographicSize = Mathf.Max(camera.orthographicSize, 0.1f);
@@ -40,17 +47,17 @@ public class CameraControls : MonoBehaviour
         }
         if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
-            float speed = moveSpeed;
+            float speed = moveSpeed*0.1f;
             Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
             transform.Translate(-touchDeltaPosition.x * speed, -touchDeltaPosition.y * speed, 0);
         }
 #endif
 #if UNITY_EDITOR
-        if(Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(2))
         {
             m_dragOrigin = Input.mousePosition;
         }
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(2))
         {
             Vector3 deltaPosition = Input.mousePosition - m_dragOrigin;
             float speed = moveSpeed * 0.05f;
@@ -62,27 +69,30 @@ public class CameraControls : MonoBehaviour
         {
             
             camera.orthographicSize -= Input.mouseScrollDelta.y * orthoZoomSpeed;
+            
             camera.orthographicSize = Mathf.Max(camera.orthographicSize, 0.1f);
         }
 #endif
         Camera mainCamera=Camera.main;
-        float maxWidth = (m_bounds.right - m_bounds.left) / 4;
-        float maxHeight = (m_bounds.top - m_bounds.bottom) / 4;
+        float maxWidth = (m_bounds.right - m_bounds.left-2*m_margins) / 4;
+        float maxHeight = (m_bounds.top - m_bounds.bottom - 2 * m_margins) / 4;
         if (mainCamera.orthographicSize > maxWidth)
             mainCamera.orthographicSize = maxWidth;
         float verticalSize = mainCamera.orthographicSize * m_ratio;
         if (verticalSize > maxHeight)
             mainCamera.orthographicSize = maxHeight / m_ratio;
         Vector3 translation= new Vector3();
-        if (mainCamera.transform.position.x - mainCamera.orthographicSize*2 < m_bounds.left)
-            translation.x = m_bounds.left + mainCamera.orthographicSize*2 -mainCamera.transform.position.x;
-        else if(mainCamera.transform.position.x + mainCamera.orthographicSize*2  >m_bounds.right)
-            translation.x = m_bounds.right - mainCamera.orthographicSize*2 -mainCamera.transform.position.x;
-        if (mainCamera.transform.position.y - verticalSize * 2 < m_bounds.bottom)
-            translation.y = m_bounds.bottom + verticalSize * 2 - mainCamera.transform.position.y;
-        else if (mainCamera.transform.position.y + verticalSize * 2 > m_bounds.right)
-            translation.y = m_bounds.right - verticalSize * 2 - mainCamera.transform.position.y;
+        if (mainCamera.transform.position.x - mainCamera.orthographicSize*2 < m_bounds.left+m_margins)
+            translation.x = m_bounds.left + m_margins + mainCamera.orthographicSize * 2 - mainCamera.transform.position.x;
+        else if(mainCamera.transform.position.x + mainCamera.orthographicSize*2  >m_bounds.right-m_margins)
+            translation.x = m_bounds.right - m_margins - mainCamera.orthographicSize * 2 - mainCamera.transform.position.x;
+        if (mainCamera.transform.position.y - verticalSize * 2 < m_bounds.bottom+m_margins)
+            translation.y = m_bounds.bottom + m_margins + verticalSize * 2 - mainCamera.transform.position.y;
+        else if (mainCamera.transform.position.y + verticalSize * 2 > m_bounds.right-m_margins)
+            translation.y = m_bounds.top - m_margins - verticalSize * 2 - mainCamera.transform.position.y;
         mainCamera.transform.Translate(translation);
+
+        camera.transform.localScale = (Vector3)(Vector2.one * camera.orthographicSize)+Vector3.forward;
     }
     void Start()
     {

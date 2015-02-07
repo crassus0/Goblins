@@ -183,8 +183,14 @@
         Id="e784a705-3827-41b8-9b1b-d6d99e77f6bc"
         name="GameObject"
         isAbstract="false"
-        isLeaf="false"
+        isLeaf="true"
         isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="7ed75751-639d-452c-bca2-9964b1fa563e"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FG:%2FUnrewealed%2FGoblins%2FLibrary%2FUnityAssemblies%2FUnityEngine.dll Namespace%3DUnityEngine Type%3DGameObject"
+            tag="ViewCode" />
+        </referencesInternal>
         <appliedStereotypesInternal>
           <stereotypeInstance
             Id="6b38be6b-3e2a-4a8b-9eff-ae008ae8f8af"
@@ -209,7 +215,7 @@
                 <propertyInstance
                   Id="07d57d84-a368-4ca4-bf58-d57c0dab5f8a"
                   name="IsStatic"
-                  value="false" />
+                  value="False" />
               </stereotypeInstanceHasPropertyInstances>
               <stereotypeInstanceHasPropertyInstances
                 Id="fcbfc4c4-8a82-49f0-ac12-0729dc494e64">
@@ -273,6 +279,114 @@
                 Id="f2d87162-8646-4436-b6e5-c4f544518f78">
                 <propertyInstance
                   Id="a77672da-a52c-4240-850e-475ecfd2cdd7"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="621f6b39-6dc2-4ee1-9982-74eefb1dc87c"
+        LastKnownName="UI"
+        LastKnownLocation="Package_0033.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="8efe0665-5308-4a2d-9ce9-3f95b87de66b"
+        name="Color"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="0649687b-8167-4110-9acc-f6f2ee646562"
+            handle="viewcode://./CodeSchema_Struct?Assembly%3Dfile:%2F%2F%2FG:%2FUnrewealed%2FGoblins%2FLibrary%2FUnityAssemblies%2FUnityEngine.dll Namespace%3DUnityEngine Type%3DColor"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="c86b2fb3-6906-41d6-802d-074af142b7d3"
+            name="struct"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d0348266-11cf-4ddf-86ed-dfbaee81f60a">
+                <propertyInstance
+                  Id="9f4d3232-ebf4-4d09-8ee2-c3216058baa5"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1b227ba5-4f3d-4400-99e8-00ba0661f826">
+                <propertyInstance
+                  Id="bcb236a7-0a90-47af-b168-e3dcc2484250"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a1c745ce-85c3-48b7-8dfc-7184efb6e71c">
+                <propertyInstance
+                  Id="4b060363-cbf8-4167-91dc-e9ab17ab9b72"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a1076829-974a-4cde-b08d-1ece58d7edf7">
+                <propertyInstance
+                  Id="299abcb2-279a-4e2e-8f5a-bac209a250a9"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="61a9b071-5fb2-4ac9-86b5-9e2fc53879e2"
+        name="Vector3"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="da5317e9-8a1a-41c2-829b-adfd8e135946"
+            handle="viewcode://./CodeSchema_Struct?Assembly%3Dfile:%2F%2F%2FG:%2FUnrewealed%2FGoblins%2FLibrary%2FUnityAssemblies%2FUnityEngine.dll Namespace%3DUnityEngine Type%3DVector3"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="860f5b1e-da94-498f-abed-e6cdcf6ae7b7"
+            name="struct"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2a19f9b5-dafd-47c9-9eb2-038492f78812">
+                <propertyInstance
+                  Id="dad22b66-e04c-40d8-9926-a6dafb99604b"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="feb9d27a-397a-4fb7-8c14-8e095a8fe8d4">
+                <propertyInstance
+                  Id="02ac67b8-40f0-4c12-94a6-125b2c96aeb8"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="277e271a-97cb-434a-9650-1db3b1d183ad">
+                <propertyInstance
+                  Id="e69a36dd-de01-4428-8e16-9e6bf5aaa44b"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cebfee7d-d93b-4728-92eb-6acbfc2db595">
+                <propertyInstance
+                  Id="6374ab02-e996-42da-8c4f-fe08d68b46e6"
                   name="PackageVisibility"
                   value="internal" />
               </stereotypeInstanceHasPropertyInstances>

@@ -6,20 +6,14 @@
   <MessageClass Name="Error" Label="Error" Option="Show errors" />
   <MessageClass Name="Property" Label="Property" Option="Show metadata" />
   <MessageClass Name="Diagnostic" Label="Message" Option="Show diagnostic messages" />
-  <Message Timestamp="2014-12-14T21:33:57" Importance="High" Text="Reverse Engineering Started." />
-  <Message Timestamp="2014-12-14T21:33:58" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject' -  (ModelStoreModel)" />
-  <Message Timestamp="2014-12-14T21:33:58" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject::BasicLocomotion' -  (Class)   (partially reverse engineered - definition not updated) " />
-  <Message Timestamp="2014-12-14T21:33:58" Importance="Medium" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject::GoblinLocomotion' -  (Class)" />
-  <Message Timestamp="2014-12-14T21:33:58" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject::GoblinLocomotion::GoblinLocomotion' -  (Operation)" />
-  <Message Timestamp="2014-12-14T21:33:58" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject::GoblinLocomotion::KeepBalance' -  (Operation)" />
-  <Message Timestamp="2014-12-14T21:33:58" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject::GoblinLocomotion::KeepBalance::angle' -  (Parameter)" />
-  <Message Timestamp="2014-12-14T21:33:58" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject::GoblinLocomotion::MoveForward' -  (Operation)" />
-  <Message Timestamp="2014-12-14T21:33:58" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject::GoblinLocomotion::MoveForward::speed' -  (Parameter)" />
-  <Message Timestamp="2014-12-14T21:33:58" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject::GoblinLocomotion::torqueTransformer' -  (Property)" />
-  <Message Timestamp="2014-12-14T21:33:58" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject::System' -  (Package)" />
-  <Message Timestamp="2014-12-14T21:33:58" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject::System::Single' -  (Class)   (partially reverse engineered - definition not updated) " />
-  <Message Timestamp="2014-12-14T21:33:58" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: GoblinsModelsProject::GoblinLocomotion to GoblinsModelsProject::BasicLocomotion (Generalization)" />
-  <Message Timestamp="2014-12-14T21:33:58" Importance="High" Text="(1) type(s) fully reverse engineered." />
-  <Message Timestamp="2014-12-14T21:33:58" Importance="High" Text="(2) type(s) partially reverse engineered.  These types were not included in the original selection so their full definitions are not reverse engineered.  Instead, this shallow operation has simply ensured these types exist in the UML model because they are needed in order to fully describe other elements." />
-  <Message Timestamp="2014-12-14T21:33:58" Importance="High" Text="The reverse engineering operation completed with (0) error(s), and (0) warning(s)." />
+  <Message Timestamp="2015-02-08T00:43:53" Importance="High" Text="Reverse Engineering Started." />
+  <Message Timestamp="2015-02-08T00:43:54" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject' -  (ModelStoreModel)" />
+  <Message Timestamp="2015-02-08T00:43:54" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject::System' -  (Package)" />
+  <Message Timestamp="2015-02-08T00:43:54" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject::System::Single' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-02-08T00:43:54" Importance="Medium" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject::Utility' -  (Class)" />
+  <Message Timestamp="2015-02-08T00:43:54" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject::Utility::NormalizeAngle' -  (Operation)" />
+  <Message Timestamp="2015-02-08T00:43:54" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'GoblinsModelsProject::Utility::NormalizeAngle::angle' -  (Parameter)" />
+  <Message Timestamp="2015-02-08T00:43:54" Importance="High" Text="(1) type(s) fully reverse engineered." />
+  <Message Timestamp="2015-02-08T00:43:54" Importance="High" Text="(1) type(s) partially reverse engineered.  These types were not included in the original selection so their full definitions are not reverse engineered.  Instead, this shallow operation has simply ensured these types exist in the UML model because they are needed in order to fully describe other elements." />
+  <Message Timestamp="2015-02-08T00:43:54" Importance="High" Text="The reverse engineering operation completed with (0) error(s), and (0) warning(s)." />
 </Log>

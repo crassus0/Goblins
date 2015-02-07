@@ -16,8 +16,7 @@ public class Terrain : PhysicsObject
     static List<Terrain> s_terrainComponents= new List<Terrain>();
     public static ScreenBounds GetScreenBounds()
     {
-        const float bound = 0.1f;
-        s_terrainComponents.ForEach(x => Debug.Log(x.transform.position));
+        const float bound = 0f;
         ScreenBounds bounds = new ScreenBounds();
         Terrain element = s_terrainComponents[0];
         bounds.left = element.transform.position.x+bound;
@@ -26,6 +25,36 @@ public class Terrain : PhysicsObject
         element = s_terrainComponents[s_terrainComponents.Count - 1];
         bounds.right = element.transform.position.x + element.GetComponent<TerrainEditor2D>().Width-bound;
         return bounds;
+    }
+    public static bool OnTerrain(Vector2 point)
+    {
+        Vector2 edgePoint;
+        for(int i=0; i<s_terrainComponents.Count; i++)
+        {
+            EdgeCollider2D collider = s_terrainComponents[i].collider2D as EdgeCollider2D;
+            float xOffset = s_terrainComponents[i].transform.position.x;
+            edgePoint = collider.points.FirstOrDefault(x => x.x+xOffset >= point.x);
+            if(edgePoint!=default(Vector2))
+            {
+                return edgePoint.y >= point.y;
+            }
+        }
+        return true;
+    }
+     
+    public static float TerrainHeight(float xCoord)
+    {
+        Vector2 edgePoint;
+        for (int i = 0; i < s_terrainComponents.Count; i++)
+        {
+            EdgeCollider2D collider = s_terrainComponents[i].collider2D as EdgeCollider2D;
+            float xOffset = s_terrainComponents[i].transform.position.x;
+            edgePoint = collider.points.FirstOrDefault(x => x.x + xOffset >= xCoord);
+            if (edgePoint != default(Vector2))
+                return edgePoint.y;
+
+        }
+        return 0;
     }
     protected override void Start()
     {
@@ -48,5 +77,9 @@ public class Terrain : PhysicsObject
 	protected override void FixedUpdate()
 	{
 	}
+    public override int DestructionPrice
+    {
+        get { return 0; }
+    }
 }
 

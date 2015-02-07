@@ -14,7 +14,7 @@ public abstract class PhysicsObject : MonoBehaviour
 {
     public float Mass;
     public float Strength;
-    
+    public abstract int DestructionPrice { get; }
     
 	protected abstract  void Start();
 
@@ -28,7 +28,10 @@ public abstract class PhysicsObject : MonoBehaviour
     {
 
     }
-    
+    protected virtual void OnDestroy()
+    {
+        Level.CurrentLevel.OnObjectDestroyed(this);
+    }
 }
 public struct HitInfo
 {
