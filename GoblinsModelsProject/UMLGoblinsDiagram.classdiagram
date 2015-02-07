@@ -9651,6 +9651,203 @@
         <elementDefinition Id="b154b3bb-44dd-429c-8b3a-a4d22cc729d8" />
       </referencedType>
     </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="70a12a58-184b-46ff-b07a-bfc5edb2246c" name="JumpingGoblinMoveStrategy" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b49fd592-5c0f-4bd4-90b4-9e67bab882fe" />
+        <generalsInternal>
+          <generalization Id="ef24c09a-4b99-4e93-962a-a288be42102f" isSubstitutable="false">
+            <classMoniker Id="a5a4d200-4be4-476c-99c0-87dba25d9e54" LastKnownName="GoblinMoveStrategy" />
+            <elementDefinition Id="783a3924-bc43-4e2d-89ae-5452e17fc89b" />
+          </generalization>
+        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="7d0202c8-4581-4dd9-8dae-c333d3c09b5f" name="Steer" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="fd99b01d-eb9e-45a3-89a2-85aec03bf444" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="5da801b0-fdff-48ab-a9e3-f5ff4ba479d2" name="parent" direction="In">
+                  <elementDefinition Id="13aa61c0-f6e7-4b8a-a289-4962839078f5" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="5157f8f6-6271-4825-a76c-bdff07c9d7be" LastKnownName="BasicSteering" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="00bc9b4c-e60f-48b7-ad8b-96471a0c5664" name="JumpingGoblingFloatStrategy" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d7cd1847-9c69-4805-8a66-88d955b9e31a" />
+        <generalsInternal>
+          <generalization Id="f68c03c7-6a0b-4f70-9fa5-e3bd6d9b2704" isSubstitutable="false">
+            <classMoniker Id="5c45e310-6a88-4f35-b1e4-46b077294f39" LastKnownName="GoblinFloatStartegy" />
+            <elementDefinition Id="d5a2619e-f0ba-430f-a46a-51e686bee8af" />
+          </generalization>
+        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="bd379423-e8eb-4663-9dc4-de603aac338b" name="Steer" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <appliedStereotypesInternal>
+              <stereotypeInstance Id="e4782326-b846-461c-8fc5-b1fd5683edb5" name="method" profile="CSharpProfile">
+                <elementDefinition Id="5f30e798-6d56-42a8-bc93-53da94db5a66" />
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="c4370bb6-c0f8-4364-b2ca-002c84d1d594">
+                    <propertyInstance Id="efb059da-c60c-437e-929e-d32253920bd8" name="ClrAttributes">
+                      <elementDefinition Id="cbb766f8-df17-4c4c-a0f9-4e0a0039e944" />
+                    </propertyInstance>
+                    <elementDefinition Id="bb2d3893-1413-420c-9854-1d3e7a6e7e95" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="3d2729cd-ce1d-4639-820e-5a3d5685755a">
+                    <propertyInstance Id="450e9339-b031-41e3-83f4-622ac409dae3" name="IsPartial" value="false">
+                      <elementDefinition Id="17006863-171d-411f-9a1f-a3d9eb0a09da" />
+                    </propertyInstance>
+                    <elementDefinition Id="df61a0f3-add8-4d2c-80c7-789f0d4ca262" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="e8709bd5-6ea1-4cf3-82d1-8beaf1ede8ea">
+                    <propertyInstance Id="0ced03ae-d3cd-4413-bdf0-aa2896ec7472" name="IsUnsafe" value="false">
+                      <elementDefinition Id="849eea0a-bfe6-4770-a853-0dfe829f8914" />
+                    </propertyInstance>
+                    <elementDefinition Id="74eeff35-41da-4862-a59b-4ddc3e3406cb" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="cad5b600-c62e-45f3-9c2a-84230d7b0225">
+                    <propertyInstance Id="32812db7-1632-4e6c-be29-1301a5d23e8b" name="Inheritance" value="none">
+                      <elementDefinition Id="f7c8f351-c647-499d-9938-0cce481b5f65" />
+                    </propertyInstance>
+                    <elementDefinition Id="1dbad2c4-e78f-4146-81ad-7b0f22ca7121" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="67a95849-97e2-43ea-9627-05dcf941b032">
+                    <propertyInstance Id="901a8c2e-01e0-44ff-a94a-bfeed46c8e5f" name="PackageVisibility" value="internal">
+                      <elementDefinition Id="d12da884-1e76-4d29-b9d0-1918942e3cf4" />
+                    </propertyInstance>
+                    <elementDefinition Id="55b8b417-983f-4466-a7ec-99c59247d145" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="45093e66-9f67-4ccd-8670-4862093a6b97">
+                    <propertyInstance Id="af7797bf-2b82-4d26-8af7-5b21b48952d0" name="params" value="false">
+                      <elementDefinition Id="b731c583-8247-434b-870b-a4ff5af0e3ed" />
+                    </propertyInstance>
+                    <elementDefinition Id="650ce622-27c8-401c-becc-7e20ba541fd5" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <elementDefinition Id="f75da81a-e571-4c99-8301-9193521d6509" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="e554299d-c56e-4e48-8af6-7aa42044132e" name="controller" direction="In" isUnique="false">
+                  <elementDefinition Id="53102741-e33d-4876-8a4b-2f551d751c25" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="5157f8f6-6271-4825-a76c-bdff07c9d7be" LastKnownName="BasicSteering" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="35956d22-6c58-4ec2-bfc6-2b0e2e1394fa" name="JumpingGoblinLocomotion" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="22876a60-cb1f-4f35-baf7-f8fcbc31d32e" />
+        <generalsInternal>
+          <generalization Id="53bdaed6-34ea-48db-a728-abfe1418094d" isSubstitutable="false">
+            <classMoniker Id="af4fc487-948d-4ceb-8a0e-4b576d991aea" LastKnownName="GoblinLocomotion" />
+            <elementDefinition Id="7cb65d89-7b94-4203-9dd9-cdb52e219746" />
+          </generalization>
+        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="b2a381cd-2461-4a0b-ad4c-76958f3b6d68" name="Jump" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="46ce3534-2ad9-4792-9a1d-4e52879c4eff" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="ddced56c-e0cc-42bd-9e00-a6ad1ec9f881" name="direction" direction="In" isUnique="false">
+                  <elementDefinition Id="a4c208f7-2285-4636-a786-5ea1ed32932d" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="acf4df0d-4f20-4ab5-99b3-352ca428794f" LastKnownName="Vector2" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="acf4df0d-4f20-4ab5-99b3-352ca428794f" name="Vector2" isAbstract="false" isLeaf="false" cachedFullName="Vector2">
+        <elementDefinition Id="04d21d21-6d73-40bf-a437-bc5ef0a0c24e" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="66723cd2-1aa2-4d28-bdfa-1a8fad928a56" name="JumpingGoblinSteering" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="65b993e5-355d-4d7d-991b-897897581544" />
+        <generalsInternal>
+          <generalization Id="d695abca-5f98-4b5d-912d-9fba670e8a55" isSubstitutable="false">
+            <classMoniker Id="4aad9e39-1cc9-4269-aa2e-65bce770e91e" LastKnownName="GoblinSteering" />
+            <elementDefinition Id="bf6303ed-25da-4fd4-8bfc-b2ecea559377" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property Id="bb7d940a-aa87-4792-9524-c827cd5710bd" name="Targets" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="969b7d91-8435-4190-a8e1-c6b6a73b917d" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="b13cdb84-9f3f-4a02-872d-37d71c049d03" LastKnownName="List&lt;GameObject&gt;" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="49c35cd6-ec4e-48b4-9a72-88afdb8210ce" name="Start" visibility="Protected" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="b416576a-51b5-4bfb-b476-b4256be27ac6" />
+          </operation>
+          <operation Id="66563966-e28d-4367-bdec-2798a200f8fe" name="OnCollisionEnter2D" visibility="Protected" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="490cb1db-41e0-45a5-a9e3-fa7da8b8eda9" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="dfce9483-f5e9-492b-97fe-d30bd9136cde" name="collision" direction="In">
+                  <elementDefinition Id="27b9d34c-0a80-42fd-9395-3ce3f22914fb" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="2e8aeb94-158d-4198-97b0-b120955225ba" LastKnownName="Collision2D" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="c8062320-ae0b-411d-b3ea-044c837501f1" name="OnCollisionExit2D" visibility="Protected" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="7debb6c1-089d-45af-b055-85038c802920" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="66b48e3d-747c-4cf9-9e9d-c73e95f02368" name="collider" direction="In">
+                  <elementDefinition Id="79f3af66-2b0b-46a3-af1e-2c9c8fac0d9a" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="2e8aeb94-158d-4198-97b0-b120955225ba" LastKnownName="Collision2D" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="c68c0b38-3b22-4dd8-9636-3249f9c53285" name="OnCollisionStay2D" visibility="Protected" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="a4209ce9-6f8e-4632-8023-a912b2085081" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="5ba42148-3426-49e4-86b5-137603d40088" name="collision" direction="In">
+                  <elementDefinition Id="73170022-2a35-4343-99e1-e59c151463b1" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="2e8aeb94-158d-4198-97b0-b120955225ba" LastKnownName="Collision2D" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="b37c6247-668c-4126-8d50-755135fa335b" name="JumpingGoblinSteering" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="db3998bb-8efc-4832-8cd6-b4571651c961" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="b13cdb84-9f3f-4a02-872d-37d71c049d03" name="List&lt;GameObject&gt;" isAbstract="false" isLeaf="false" cachedFullName="List&lt;GameObject&gt;">
+        <elementDefinition Id="f894c896-9992-4d29-8cec-43384dca5ff6" />
+      </referencedType>
+    </packageHasNamedElement>
   </packagedElements>
   <package Id="9bda3386-72df-4573-8f50-28a90d5b5499" name="GoblinsModelsProject">
     <elementDefinition Id="c09e6090-990a-4dd3-a1e4-8a5610ed1a0d" />
