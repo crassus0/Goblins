@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GoblinPhysics : CustomMob {
+public class GoblinPhysics : PhysicsObject {
     float m_energy;
     protected override void Start()
     {

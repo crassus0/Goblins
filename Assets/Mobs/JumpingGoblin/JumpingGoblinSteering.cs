@@ -18,25 +18,6 @@ public class JumpingGoblinSteering : GoblinSteering
 		set;
 	}
 
-	protected override void Start()
-	{
-		throw new System.NotImplementedException();
-	}
-
-	protected override void OnCollisionEnter2D(Collision2D collision)
-	{
-		throw new System.NotImplementedException();
-	}
-
-	protected override void OnCollisionExit2D(Collision2D collider)
-	{
-		throw new System.NotImplementedException();
-	}
-
-	protected override void OnCollisionStay2D(Collision2D collision)
-	{
-		throw new System.NotImplementedException();
-	}
 
 	public JumpingGoblinSteering()
 	{
