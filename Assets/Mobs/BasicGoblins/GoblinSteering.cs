@@ -19,24 +19,29 @@ public class GoblinSteering : BasicSteering
         Targets = new List<GameObject>();
         SetStrategy(new GoblinFloatStartegy());
 	}
-    protected void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (Physics2D.Raycast(collision.contacts[collision.contacts.Length - 1].point, -transform.up, 0.01f).collider != null) 
+        Debug.DrawRay(collision.contacts[0].point, transform.right, Color.green);
+        if (Physics2D.Raycast(collision.contacts[collision.contacts.Length - 1].point, -transform.up, 0.01f).collider != null)
         {
             SurfaceContact = collision.contacts[collision.contacts.Length - 1];
             if (!m_terrain.Contains(collision.gameObject))
                 m_terrain.Add(collision.gameObject);
-            if(Targets.Count==0)
+            if (Targets.Count == 0)
                 SetStrategy(new GoblinMoveStrategy());
         }
-        else if (Physics2D.Raycast(collision.contacts[collision.contacts.Length - 1].point, Vector2.right, 0.01f).collider==collision.collider)
+        else
         {
-            SetStrategy(new GoblnCombatStrategy());
-            if (!Targets.Contains(collision.collider.gameObject))
-                Targets.Add(collision.collider.gameObject);
+            
+            if (Physics2D.Raycast(collision.contacts[0].point, transform.right, 0.1f).collider == collision.collider)
+            {
+                SetStrategy(new GoblnCombatStrategy());
+                if (!Targets.Contains(collision.collider.gameObject))
+                    Targets.Add(collision.collider.gameObject);
+            }
         }
     }
-    protected void OnCollisionExit2D(Collision2D collider)
+    protected virtual void OnCollisionExit2D(Collision2D collider)
     {
         
        m_terrain.Remove(collider.gameObject);
@@ -55,9 +60,9 @@ public class GoblinSteering : BasicSteering
             SetStrategy(new GoblinMoveStrategy());
         }
     }
-    protected void OnCollisionStay2D(Collision2D collision)
+    protected virtual void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.DrawRay(collision.contacts[collision.contacts.Length - 1].point, -transform.up, Color.blue);
+        //Debug.DrawRay(collision.contacts[collision.contacts.Length - 1].point, -transform.up, Color.blue);
         ContactPoint2D realContact = new ContactPoint2D();
         foreach(ContactPoint2D contact in collision.contacts)
         {

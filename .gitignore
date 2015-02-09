@@ -5,6 +5,7 @@ Temp/
 Obj/
 UnityGenerated/
 Library/
+
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
@@ -19,7 +20,7 @@ ExportedObj/
 *.unityproj
 *.booproj
 *.exe 
- 
+GoblinsModelsProjectLib/
 # ============ #
 # OS generated #
 # ============ #

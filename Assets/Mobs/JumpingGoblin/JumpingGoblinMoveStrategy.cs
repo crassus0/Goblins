@@ -9,20 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-public class GoblinFloatStartegy : BasicSteeringStrategy
+public class JumpingGoblinMoveStrategy : GoblinMoveStrategy
 {
-
-    public GoblinFloatStartegy()
-    {
-
-    }
-	public virtual void Steer(BasicSteering controller)
+	public override void Steer(BasicSteering parent)
 	{
-        GoblinSteering parentController = controller as GoblinSteering;
-        if (parentController.rigidbody2D.velocity.magnitude < 0.001f)
-        {
-            parentController.SendMessage("StandUp", parentController.SurfaceContact.normal);
-        }
+		throw new System.NotImplementedException();
 	}
 
 }

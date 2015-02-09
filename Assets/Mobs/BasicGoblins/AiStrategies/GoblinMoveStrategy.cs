@@ -15,7 +15,7 @@ public class GoblinMoveStrategy : BasicSteeringStrategy
     {
         
     }
-    public void Steer(BasicSteering parent)
+    public virtual void Steer(BasicSteering parent)
     {
         GoblinSteering parentController = parent as GoblinSteering;
         Vector2 normal = parentController.SurfaceContact.normal;

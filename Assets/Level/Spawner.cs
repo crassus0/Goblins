@@ -9,20 +9,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-public class GoblinFloatStartegy : BasicSteeringStrategy
+
+public class Spawner : MonoBehaviour
 {
+	public List<MobWave> MobWaves;
 
-    public GoblinFloatStartegy()
-    {
+	private Single m_timeLeft;
 
-    }
-	public virtual void Steer(BasicSteering controller)
+	private void Spawn(GameObject mob)
 	{
-        GoblinSteering parentController = controller as GoblinSteering;
-        if (parentController.rigidbody2D.velocity.magnitude < 0.001f)
-        {
-            parentController.SendMessage("StandUp", parentController.SurfaceContact.normal);
-        }
+		throw new System.NotImplementedException();
+	}
+
+	private void Update()
+	{
+		throw new System.NotImplementedException();
+	}
+
+	private void Reset()
+	{
+		throw new System.NotImplementedException();
+	}
+
+	public Spawner()
+	{
 	}
 
 }
