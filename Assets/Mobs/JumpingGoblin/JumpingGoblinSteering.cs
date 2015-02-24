@@ -12,16 +12,67 @@ using UnityEngine;
 
 public class JumpingGoblinSteering : GoblinSteering
 {
-	public virtual List<GameObject> Targets
-	{
-		get;
-		set;
-	}
+    public float DelayTime { get; set; }
+   
+    HashSet<GameObject> m_terrain = new HashSet<GameObject>();
+    
+    protected new void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (Physics2D.Raycast(collision.contacts[collision.contacts.Length - 1].point, -transform.up, 0.01f).collider != null)
+        {
+            SurfaceContact = collision.contacts[collision.contacts.Length - 1];
+            if (!m_terrain.Contains(collision.gameObject))
+                m_terrain.Add(collision.gameObject);
+            if (Targets.Count == 0)
+                SetStrategy(new JumpingGoblinMoveStrategy());
+        }
+        else if (Physics2D.Raycast(collision.contacts[collision.contacts.Length - 1].point, Vector2.right, 0.01f).collider == collision.collider)
+        {
+            SetStrategy(new GoblnCombatStrategy());
+            if (!Targets.Contains(collision.collider.gameObject))
+                Targets.Add(collision.collider.gameObject);
+        }
+    }
+    protected new void OnCollisionExit2D(Collision2D collider)
+    {
 
-
-	public JumpingGoblinSteering()
-	{
-	}
-
+        m_terrain.Remove(collider.gameObject);
+        if (m_terrain.Count == 0)
+        {
+            SetStrategy(new JumpingGoblinFloatStrategy());
+            SurfaceContact = new ContactPoint2D();
+        }
+        RemoveTarget(collider.collider.gameObject);
+    }
+    
+    protected new void OnCollisionStay2D(Collision2D collision)
+    {
+        Debug.DrawRay(collision.contacts[collision.contacts.Length - 1].point, -transform.up, Color.blue);
+        ContactPoint2D realContact = new ContactPoint2D();
+        foreach (ContactPoint2D contact in collision.contacts)
+        {
+            if (Physics2D.Raycast(contact.point, -transform.up, 0.1f).collider != null)
+                realContact = contact;
+        }
+        if (realContact.normal != default(Vector2))
+        {
+            if (!m_terrain.Contains(collision.gameObject))
+            {
+                m_terrain.Add(collision.gameObject);
+                if (Targets.Count == 0)
+                    SetStrategy(new JumpingGoblinMoveStrategy());
+            }
+            SurfaceContact = realContact;
+        }
+        else
+        {
+            m_terrain.Remove(collision.collider.gameObject);
+            if (m_terrain.Count == 0)
+            {
+                SetStrategy(new JumpingGoblinFloatStrategy());
+                SurfaceContact = collision.contacts[collision.contacts.Length - 1];
+            }
+        }
+    }
 }
 

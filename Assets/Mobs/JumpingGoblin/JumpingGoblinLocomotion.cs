@@ -13,7 +13,8 @@ public class JumpingGoblinLocomotion : GoblinLocomotion
 {
 	public virtual void Jump(Vector2 direction)
 	{
-		throw new System.NotImplementedException();
+        rigidbody2D.velocity += direction;
+
 	}
 
 }

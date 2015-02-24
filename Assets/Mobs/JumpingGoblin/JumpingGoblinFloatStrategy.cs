@@ -8,12 +8,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
-public class JumpingGoblingFloatStrategy : GoblinFloatStartegy
+public class JumpingGoblinFloatStrategy : GoblinFloatStartegy
 {
 	public override void Steer(BasicSteering controller)
 	{
-		throw new System.NotImplementedException();
+        Vector2 origin = new Vector2();
+        origin.x = controller.collider2D.bounds.max.x;
+        origin.y = controller.collider2D.bounds.min.y;
+        if (Physics2D.Raycast(origin, controller.rigidbody2D.velocity, controller.rigidbody2D.velocity.magnitude).collider != null)
+        {
+            controller.rigidbody2D.AddForce(-controller.rigidbody2D.velocity / 2);
+        }
 	}
 
 }

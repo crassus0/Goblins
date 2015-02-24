@@ -13,7 +13,17 @@ public class JumpingGoblinMoveStrategy : GoblinMoveStrategy
 {
 	public override void Steer(BasicSteering parent)
 	{
-		throw new System.NotImplementedException();
+		JumpingGoblinSteering jumpParent=parent as JumpingGoblinSteering;
+        base.Steer(jumpParent);
+
+        jumpParent.DelayTime+=Time.fixedDeltaTime;
+        if (jumpParent.DelayTime>2)
+        {
+            jumpParent.DelayTime-=2;
+            jumpParent.SendMessage("Jump",new Vector2(2,10));
+        }
+      
+
 	}
 
 }
