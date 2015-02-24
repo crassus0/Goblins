@@ -19,11 +19,11 @@ public class GoblinMoveStrategy : BasicSteeringStrategy
     {
         GoblinSteering parentController = parent as GoblinSteering;
         Vector2 normal = parentController.SurfaceContact.normal;
+        if (normal == Vector2.zero)
+            normal = Vector2.up;
         float angle = 0;
         angle = Vector2.Angle(parentController.transform.up, normal) * Mathf.Sign(parentController.transform.up.x - normal.x);
         angle = Utility.NormalizeAngle(angle);
-        Debug.DrawRay(parentController.SurfaceContact.point, parentController.SurfaceContact.normal, Color.red);
-        Debug.DrawRay(parentController.SurfaceContact.point, parentController.transform.up);
         parentController.SendMessage("MoveForward", 20);
         parentController.SendMessage("KeepBalance", angle);
         
