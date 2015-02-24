@@ -29,6 +29,7 @@ public class GoblinLocomotion : BasicLocomotion
     }
     private void StandUp(Vector2 normal)
     {
+
         float angle = Vector2.Angle(normal, Vector2.up);
         transform.eulerAngles=new Vector3(0,0,angle);
         //Debug.Log(transform.rotation.eulerAngles);
