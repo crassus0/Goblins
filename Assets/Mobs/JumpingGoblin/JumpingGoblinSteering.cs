@@ -37,12 +37,12 @@ public class JumpingGoblinSteering : GoblinSteering
     {
 
         m_terrain.Remove(collider.gameObject);
+        RemoveTarget(collider.collider.gameObject);
         if (m_terrain.Count == 0)
         {
             SetStrategy(new JumpingGoblinFloatStrategy());
             SurfaceContact = new ContactPoint2D();
         }
-        RemoveTarget(collider.collider.gameObject);
     }
     
     protected new void OnCollisionStay2D(Collision2D collision)

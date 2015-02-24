@@ -55,14 +55,14 @@ public class GoblinSteering : BasicSteering
 
     protected void OnCollisionExit2D(Collision2D collision)
     {
-       
+       RemoveTarget(collision.collider.gameObject);
        m_terrain.Remove(collision.gameObject);
        if (m_terrain.Count == 0)
        {
            SetStrategy(new GoblinFloatStartegy());
            SurfaceContact = new ContactPoint2D();
        }
-       RemoveTarget(collision.collider.gameObject);
+       
     }
     public void RemoveTarget(GameObject target)
     {

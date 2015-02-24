@@ -16,6 +16,9 @@ public class JumpingGoblinLocomotion : GoblinLocomotion
         rigidbody2D.velocity += direction;
 
 	}
-
+    public virtual void Break(float k)
+    {
+      rigidbody2D.AddForce(-rigidbody2D.velocity*k);
+    }
 }
 
