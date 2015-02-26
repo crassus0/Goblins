@@ -32,8 +32,10 @@ public abstract class CreatableObject:PhysicsObject
         newPosition.y = position.y > yCoord + renderer.bounds.extents.y ? position.y : yCoord + renderer.bounds.extents.y;
         transform.position = newPosition;
     }
-    public void Place()
+    public virtual void Place()
     {
+        collider2D.isTrigger = false;
+        rigidbody2D.isKinematic = false;
         Level.CurrentLevel.CreateObject(this);
     }
 }

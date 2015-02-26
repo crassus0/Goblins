@@ -115,6 +115,8 @@ public class GUIMachine: MonoBehaviour {
     }
     void Update()
     {
+        if (Input.GetMouseButtonDown(1))
+            Debug.Break();
     }
     static void InstantiatePrefab()
     {

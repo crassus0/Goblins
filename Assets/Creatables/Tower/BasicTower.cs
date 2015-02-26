@@ -20,6 +20,40 @@ public class BasicTower : CreatableObject
     protected override void FixedUpdate()
     {
     }
+    public override void RotateOnCreation(float angle)
+    {
+        
+    }
+    public override void ScaleOnCreation(float scale)
+    {
+        
+    }
+    public override void DragOnCretaion(Vector2 position)
+    {
+        if (m_hitCollider == null)
+            m_hitCollider = GetComponent<BoxCollider2D>();
+        Vector3 newPosition = position;
+        Vector2 raycastPoint = new Vector2(position.x - m_hitCollider.bounds.extents.x, 100);
+        //gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+        RaycastHit2D hit = Physics2D.Raycast(raycastPoint, -Vector2.up, 1000, 1);
+        float yCoord = hit.point.y;
+        raycastPoint.x=  position.x;
+        hit = Physics2D.Raycast(raycastPoint, -Vector2.up, Mathf.Infinity,1);
+        yCoord=hit.point.y>yCoord?hit.point.y:yCoord;
+        raycastPoint.x = position.x + m_hitCollider.bounds.extents.x;
+        hit = Physics2D.Raycast(raycastPoint, -Vector2.up, Mathf.Infinity,1);
+        yCoord = hit.point.y > yCoord ? hit.point.y : yCoord;
+
+        newPosition.y = yCoord+m_hitCollider.bounds.extents.y;
+        transform.position = newPosition;
+        //gameObject.layer = LayerMask.NameToLayer("Default");
+    }
+    public override void SetAngleOnCreation(float angle)
+    {
+    }
+    public override void SetScaleOnCreation(float scale)
+    {
+    }
     void Update()
     {
         m_timeToShoot-=Time.deltaTime;
@@ -66,7 +100,13 @@ public class BasicTower : CreatableObject
     }
 
 
+    public override void Place()
+    {
 
+        base.Place();
+        GetComponent<CircleCollider2D>().isTrigger = true;
+        GetComponent<BoxCollider2D>().isTrigger = false;
+    }
     public override string IconName
     {
         get { return "watchtower"; }
