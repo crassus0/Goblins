@@ -21,7 +21,7 @@ public class CreateObjectButton:MonoBehaviour
         m_normalColor = m_parentButton.colors.normalColor;
         m_highLitedColor = m_parentButton.colors.highlightedColor;
         m_pressedColor = m_parentButton.colors.pressedColor;
-        m_prefabImage.sprite = Resources.Load<Sprite>(m_prefab.iconName);
+        m_prefabImage.sprite = Resources.Load<Sprite>(m_prefab.IconName);
         m_prefabImage.rectTransform.localPosition = new Vector3(0, 0, 0);
        
     }

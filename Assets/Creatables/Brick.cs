@@ -40,7 +40,7 @@ public class Brick : CreatableObject {
             Destroy(gameObject);
     }
 
-    public override string iconName
+    public override string IconName
     {
         get { return "brick"; }
     }

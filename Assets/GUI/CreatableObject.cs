@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 public abstract class CreatableObject:PhysicsObject
 {
-    public abstract string iconName { get; }
+    public abstract string IconName { get; }
     public abstract int Price { get; }
     
     public virtual void SetAngleOnCreation(float angle)

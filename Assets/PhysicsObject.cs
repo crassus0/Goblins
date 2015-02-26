@@ -12,7 +12,7 @@ using UnityEngine;
 
 public abstract class PhysicsObject : MonoBehaviour
 {
-    public float Mass;
+    public float Mass{get{return rigidbody2D.mass;}}
     public float Strength;
     public abstract int DestructionPrice { get; }
     
@@ -26,7 +26,9 @@ public abstract class PhysicsObject : MonoBehaviour
 
     protected virtual void OnHit(HitInfo info)
     {
-
+        Strength -= info.hitEnergy;
+        if (Strength <= 0)
+            Destroy(gameObject);
     }
     protected virtual void OnDestroy()
     {
@@ -38,6 +40,6 @@ public struct HitInfo
     public Vector2 velocity;
     public float mass;
     public float hitEnergy;
-
+    
 }
 
