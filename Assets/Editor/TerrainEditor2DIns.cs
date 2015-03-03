@@ -255,7 +255,7 @@ public class TerrainEditor2DIns: Editor
 
     public void SaveMesh(GameObject obj, Mesh mesh)
     {
-        string path = "Assets/2DTerrainEditor/SavedMeshes/";
+        string path = "Assets/Editor/2DTerrainEditor/SavedMeshes/";
 
         AssetDatabase.Refresh();
 

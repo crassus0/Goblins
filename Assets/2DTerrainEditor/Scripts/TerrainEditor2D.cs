@@ -33,6 +33,13 @@ public class TerrainEditor2D : MonoBehaviour
     public float CapOffset;
 
     public GameObject CapObj;
+    [SerializeField]
+    Vector2[] m_colliderData;
+
+    public void Awake()
+    {
+        LoadMesh(m_colliderData);
+    }
 
     public void CreateTerrain() //Create new terrain
     {
@@ -218,6 +225,7 @@ public class TerrainEditor2D : MonoBehaviour
             point++;
         }
         gameObject.GetComponent<EdgeCollider2D>().points = points;
+        m_colliderData = gameObject.GetComponent<EdgeCollider2D>().points;
     }
     public void LoadMesh(Vector2[] colliderPoints)
     {
@@ -236,8 +244,10 @@ public class TerrainEditor2D : MonoBehaviour
     {
         //DestroyImmediate(gameObject.GetComponent<MeshFilter>().sharedMesh);
 
+        if (gameObject.GetComponent<MeshFilter>().sharedMesh==null)
+            gameObject.GetComponent<MeshFilter>().sharedMesh = new Mesh();
         Mesh pathMesh = gameObject.GetComponent<MeshFilter>().sharedMesh;
-
+        
         Vector3[] verticles = newVertsPos;
 
         if (FixSides)
