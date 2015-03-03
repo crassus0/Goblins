@@ -11,7 +11,7 @@ public class Level : MonoBehaviour
     public Text ResourceAmountDisplay;
     int m_mobNumber=1;
 	// Update is called once per frame
-    void Start()
+    void Awake()
     {
         m_levelObject = this;
     }

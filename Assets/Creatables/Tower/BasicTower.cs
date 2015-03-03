@@ -9,13 +9,21 @@ public class BasicTower : CreatableObject
     List<GameObject> m_targets= new List<GameObject>();
     float ySpeed;
     BoxCollider2D m_hitCollider;
+    static int m_raycastMask;
     public override int DestructionPrice { get { return 10; } }
+    static BasicTower()
+    {
+        if(Application.isPlaying)
+            m_raycastMask = LayerMask.GetMask("Physics Objects");
+
+    }
     protected override void Start()
     {
         m_timeToShoot =  ShootCooldown;
-        float range = GetComponent<CircleCollider2D>().radius;
+        float range = transform.GetChild(0).GetComponent<CircleCollider2D>().radius;
         ySpeed = Mathf.Sqrt(-range * Physics2D.gravity.y) ;
         m_hitCollider = GetComponent<BoxCollider2D>();
+       
     }
     protected override void FixedUpdate()
     {
@@ -33,9 +41,9 @@ public class BasicTower : CreatableObject
         if (m_hitCollider == null)
             m_hitCollider = GetComponent<BoxCollider2D>();
         Vector3 newPosition = position;
-        Vector2 raycastPoint = new Vector2(position.x - m_hitCollider.bounds.extents.x, 100);
+        Vector2 raycastPoint = new Vector2(position.x - m_hitCollider.bounds.extents.x, 150);
         //gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-        RaycastHit2D hit = Physics2D.Raycast(raycastPoint, -Vector2.up, 1000, 1);
+        RaycastHit2D hit = Physics2D.Raycast(raycastPoint, -Vector2.up, 1000, m_raycastMask);
         float yCoord = hit.point.y;
         raycastPoint.x=  position.x;
         hit = Physics2D.Raycast(raycastPoint, -Vector2.up, Mathf.Infinity,1);
@@ -44,7 +52,7 @@ public class BasicTower : CreatableObject
         hit = Physics2D.Raycast(raycastPoint, -Vector2.up, Mathf.Infinity,1);
         yCoord = hit.point.y > yCoord ? hit.point.y : yCoord;
 
-        newPosition.y = yCoord+m_hitCollider.bounds.extents.y;
+        newPosition.y = yCoord+m_hitCollider.size.y/2;
         transform.position = newPosition;
         //gameObject.layer = LayerMask.NameToLayer("Default");
     }
@@ -80,6 +88,15 @@ public class BasicTower : CreatableObject
             }
         }
     }
+    public void AddTarget(GameObject target)
+    {
+        m_targets.Add(target);
+    }
+    public void RemoveTarget(GameObject target)
+    {
+        m_targets.Remove(target);
+    }
+
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
     }
@@ -88,23 +105,13 @@ public class BasicTower : CreatableObject
     {
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag=="Enemy")
-            m_targets.Add(other.gameObject);
-    }
-
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        m_targets.Remove(other.gameObject);
-    }
+    
 
 
     public override void Place()
     {
 
         base.Place();
-        GetComponent<CircleCollider2D>().isTrigger = true;
         GetComponent<BoxCollider2D>().isTrigger = false;
     }
     public override string IconName

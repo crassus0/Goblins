@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(EdgeCollider2D))]
@@ -34,11 +34,11 @@ public class TerrainEditor2D : MonoBehaviour
 
     public GameObject CapObj;
     [SerializeField]
-    Vector2[] m_colliderData;
+    List<Vector2> m_colliderData = new List<Vector2>();
 
     public void Awake()
     {
-        LoadMesh(m_colliderData);
+        LoadMesh(m_colliderData.ToArray());
     }
 
     public void CreateTerrain() //Create new terrain
@@ -225,7 +225,7 @@ public class TerrainEditor2D : MonoBehaviour
             point++;
         }
         gameObject.GetComponent<EdgeCollider2D>().points = points;
-        m_colliderData = gameObject.GetComponent<EdgeCollider2D>().points;
+        m_colliderData =new List<Vector2>(  gameObject.GetComponent<EdgeCollider2D>().points);
     }
     public void LoadMesh(Vector2[] colliderPoints)
     {
