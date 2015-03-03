@@ -75,9 +75,10 @@ public class GUIMachine: MonoBehaviour {
         if(Input.touchCount==2)
         {
             Vector3 firstTouch=Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-            Vector3 secondTouch = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            Vector3 secondTouch = Camera.main.ScreenToWorldPoint(Input.GetTouch(1).position);
 
             float angle = Vector2.Angle(Vector2.right, secondTouch - firstTouch);
+            Debug.Log(angle);
             position = (secondTouch + firstTouch) / 2;
             position.z = 10;
             if (secondTouch.y < firstTouch.y)
