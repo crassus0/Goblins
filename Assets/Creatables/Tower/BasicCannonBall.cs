@@ -35,8 +35,8 @@ public class BasicCannonBall : PhysicsObject {
         info.hitEnergy=Damage;
         foreach(GameObject x in m_targets)
         {
-            //Debug.Log(x.name);
-            x.SendMessage("OnHit", info);
+            if(x!= null)
+                x.SendMessage("OnHit", info);
         }
     }
     protected override void OnCollisionExit2D(Collision2D collision)

@@ -39,7 +39,12 @@ public class Brick : CreatableObject {
         if (Strength <= 0)
             Destroy(gameObject);
     }
-
+    public override void ScaleOnCreation(float scale)
+    {
+    }
+    public override void SetScaleOnCreation(float scale)
+    {
+    }
     public override string IconName
     {
         get { return "brick"; }
