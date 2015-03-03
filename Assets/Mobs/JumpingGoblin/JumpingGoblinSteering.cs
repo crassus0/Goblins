@@ -24,7 +24,10 @@ public class JumpingGoblinSteering : GoblinSteering
             if (!m_terrain.Contains(collision.gameObject))
                 m_terrain.Add(collision.gameObject);
             if (Targets.Count == 0)
+            {
                 SetStrategy(new JumpingGoblinMoveStrategy());
+            }
+
         }
         else if (Physics2D.Raycast(collision.contacts[collision.contacts.Length - 1].point, Vector2.right, 0.01f).collider == collision.collider)
         {

@@ -22,7 +22,7 @@ public class JumpingGoblinMoveStrategy : GoblinMoveStrategy
             jumpParent.DelayTime-=2;
             jumpParent.SendMessage("Jump",new Vector2(2,10));
         }
-      
+       
 
 	}
 
