@@ -15,13 +15,44 @@ public class JumpingGoblinFloatStrategy : GoblinFloatStartegy
 	public override void Steer(BasicSteering controller)
 	{
         Vector2 origin = new Vector2();
-        origin.x = controller.collider2D.bounds.max.x;
-        origin.y = controller.collider2D.bounds.min.y;
-        if (controller.rigidbody2D.velocity.y<0)
+
+        if (controller.rigidbody2D.velocity.y < 0)
         {
-            controller.SendMessage("Break",1.6f);
-         
+            controller.SendMessage("Break", 1.6f);
+            bool parachutestatus = false;
+
+
+            origin.x = controller.collider2D.bounds.max.x;
+            origin.y = controller.collider2D.bounds.min.y-0.01f;
+
+
+            if (Physics2D.Raycast(origin, -Vector2.up, 0.2f))
+            {
+                controller.SendMessage("ParachuteClose");
+                parachutestatus = true;
+            }
+            
+            origin.x = controller.collider2D.bounds.min.x;
+
+            if (Physics2D.Raycast(origin, -Vector2.up, 0.2f))
+            {
+                controller.SendMessage("ParachuteClose");
+                parachutestatus = true;
+            }
+            
+            origin.x = controller.collider2D.bounds.center.x;
+
+            if (Physics2D.Raycast(origin, -Vector2.up, 0.2f))
+            {
+                controller.SendMessage("ParachuteClose");
+                parachutestatus = true;
+            }
+            if (!parachutestatus)
+                controller.SendMessage("ParachuteOpen");
+
+            
         }
+
 	}
 
 }
