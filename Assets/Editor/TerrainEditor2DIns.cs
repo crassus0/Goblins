@@ -155,7 +155,7 @@ public class TerrainEditor2DIns: Editor
             _myTerrainEditor2D.RightFixedPoint = _myTerrainEditor2D.Height;
         
 
-        _myTerrainEditor2D.gameObject.renderer.material = _myTerrainEditor2D.MainMaterial;
+        _myTerrainEditor2D.gameObject.GetComponent<Renderer>().material = _myTerrainEditor2D.MainMaterial;
     }
 
     private Vector2 _mousePos;
@@ -241,12 +241,12 @@ public class TerrainEditor2DIns: Editor
         #region ConfigureHandles
 
         HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
-        if (_myTerrainEditor2D.renderer != null)
-            EditorUtility.SetSelectedWireframeHidden(_myTerrainEditor2D.renderer, true);
+        if (_myTerrainEditor2D.GetComponent<Renderer>() != null)
+            EditorUtility.SetSelectedWireframeHidden(_myTerrainEditor2D.GetComponent<Renderer>(), true);
         if (_myTerrainEditor2D.CapObj != null)
         {
-            if (_myTerrainEditor2D.CapObj.renderer != null)
-                EditorUtility.SetSelectedWireframeHidden(_myTerrainEditor2D.CapObj.renderer, true);
+            if (_myTerrainEditor2D.CapObj.GetComponent<Renderer>() != null)
+                EditorUtility.SetSelectedWireframeHidden(_myTerrainEditor2D.CapObj.GetComponent<Renderer>(), true);
         }
         
         #endregion

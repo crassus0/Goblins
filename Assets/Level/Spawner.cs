@@ -8,7 +8,7 @@ public class Spawner : MonoBehaviour {
     float m_timeLeft;
     void Spawn(GameObject mob)
     {
-        Vector3 coords = new Vector3(CameraControls.m_margins/2, Terrain.TerrainHeight(CameraControls.m_margins/2)+mob.renderer.bounds.extents.y, 10);
+        Vector3 coords = new Vector3(CameraControls.m_margins/2, TerrainControls.TerrainHeight(CameraControls.m_margins/2)+mob.GetComponent<Renderer>().bounds.extents.y, 10);
         GameObject x =Instantiate(mob, coords, Quaternion.identity) as GameObject;
         x.transform.parent = transform;
     }

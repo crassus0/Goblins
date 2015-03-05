@@ -68,9 +68,9 @@ public class CameraControls : MonoBehaviour
         if(Mathf.Abs(Input.mouseScrollDelta.y)>0.01f)
         {
             
-            camera.orthographicSize -= Input.mouseScrollDelta.y * orthoZoomSpeed;
+            GetComponent<Camera>().orthographicSize -= Input.mouseScrollDelta.y * orthoZoomSpeed;
             
-            camera.orthographicSize = Mathf.Max(camera.orthographicSize, 0.1f);
+            GetComponent<Camera>().orthographicSize = Mathf.Max(GetComponent<Camera>().orthographicSize, 0.1f);
         }
 #endif
         Camera mainCamera=Camera.main;
@@ -92,11 +92,11 @@ public class CameraControls : MonoBehaviour
             translation.y = m_bounds.top - m_margins - verticalSize * 2 - mainCamera.transform.position.y;
         mainCamera.transform.Translate(translation);
 
-        camera.transform.localScale = (Vector3)(Vector2.one * camera.orthographicSize)+Vector3.forward;
+        GetComponent<Camera>().transform.localScale = (Vector3)(Vector2.one * GetComponent<Camera>().orthographicSize)+Vector3.forward;
     }
     void Start()
     {
-        m_bounds = Terrain.GetScreenBounds();
+        m_bounds = TerrainControls.GetScreenBounds();
         m_ratio = (float)Screen.height / Screen.width;
     }
 }

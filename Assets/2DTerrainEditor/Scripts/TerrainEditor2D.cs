@@ -209,7 +209,7 @@ public class TerrainEditor2D : MonoBehaviour
 
         #endregion
         CapObj.GetComponent<MeshFilter>().mesh = pathMesh;
-        CapObj.renderer.material = CapMaterial;
+        CapObj.GetComponent<Renderer>().material = CapMaterial;
 
     }
 
@@ -229,7 +229,7 @@ public class TerrainEditor2D : MonoBehaviour
     }
     public void LoadMesh(Vector2[] colliderPoints)
     {
-        (collider2D as EdgeCollider2D).points = colliderPoints;
+        (GetComponent<Collider2D>() as EdgeCollider2D).points = colliderPoints;
         Vector3[] meshVertPositions = new Vector3[colliderPoints.Length * 2];
         for(int i=0; i<colliderPoints.Length; i++)
         {

@@ -58,9 +58,9 @@ public class GUIMachine: MonoBehaviour {
             position.z = 10;
             m_rotatedObject = Instantiate(SelectedPrefab) as GameObject;
             m_rotatedObject.SendMessage("DragOnCretaion", (Vector2)position);
-            m_basicRenderSize = m_rotatedObject.renderer.bounds.extents.x/transform.localScale.x;
-            m_rotatedObject.rigidbody2D.isKinematic = true;
-            m_rotatedObject.collider2D.enabled = false;
+            m_basicRenderSize = m_rotatedObject.GetComponent<Renderer>().bounds.extents.x/transform.localScale.x;
+            m_rotatedObject.GetComponent<Rigidbody2D>().isKinematic = true;
+            m_rotatedObject.GetComponent<Collider2D>().enabled = false;
             SelectedPrefab = null;
             
         }
@@ -108,8 +108,8 @@ public class GUIMachine: MonoBehaviour {
         Vector3 position = Camera.main.ScreenToWorldPoint((data as PointerEventData).position);
         position.z = 0;
         if (m_rotatedObject == null) return;
-        m_rotatedObject.rigidbody2D.isKinematic = false;
-        m_rotatedObject.collider2D.enabled = true;
+        m_rotatedObject.GetComponent<Rigidbody2D>().isKinematic = false;
+        m_rotatedObject.GetComponent<Collider2D>().enabled = true;
         m_rotatedObject.SendMessage("Place");
         m_rotatedObject = null;
         SelectedButton.Release();

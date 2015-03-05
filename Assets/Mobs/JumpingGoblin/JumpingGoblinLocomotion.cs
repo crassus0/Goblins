@@ -17,12 +17,12 @@ public class JumpingGoblinLocomotion : GoblinLocomotion
     bool m_parachuteOpen = false;
 	public virtual void Jump(Vector2 direction)
 	{
-        rigidbody2D.velocity += direction;
+        GetComponent<Rigidbody2D>().velocity += direction;
 
 	}
     public virtual void Break(float k)
     {
-      rigidbody2D.AddForce(-rigidbody2D.velocity*k);
+      GetComponent<Rigidbody2D>().AddForce(-GetComponent<Rigidbody2D>().velocity*k);
     }
 
     public void ParachuteOpen()

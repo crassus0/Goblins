@@ -28,14 +28,14 @@ public abstract class CreatableObject:PhysicsObject
     public virtual void DragOnCretaion(Vector2 position)
     {
         Vector3 newPosition=position;
-        float yCoord = Terrain.TerrainHeight(position.x);
-        newPosition.y = position.y > yCoord + renderer.bounds.extents.y ? position.y : yCoord + renderer.bounds.extents.y;
+        float yCoord = TerrainControls.TerrainHeight(position.x);
+        newPosition.y = position.y > yCoord + GetComponent<Renderer>().bounds.extents.y ? position.y : yCoord + GetComponent<Renderer>().bounds.extents.y;
         transform.position = newPosition;
     }
     public virtual void Place()
     {
-        collider2D.isTrigger = false;
-        rigidbody2D.isKinematic = false;
+        GetComponent<Collider2D>().isTrigger = false;
+        GetComponent<Rigidbody2D>().isKinematic = false;
         Level.CurrentLevel.CreateObject(this);
     }
 }

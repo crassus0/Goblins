@@ -11,13 +11,20 @@ public class BasicCannonBall : PhysicsObject {
     int m_destroyedNameHash = Animator.StringToHash("Base Layer.Destroyed");
     protected override void Start()
     {
-        m_animator = GetComponent<Animator>();
+        m_animator = transform.GetChild(0).GetComponent<Animator>();
+    }
+    public void SetPosition(Vector2 position)
+    {
+        position.x -= transform.GetChild(0).GetComponent<Renderer>().bounds.extents.x;
+        position.y += transform.GetChild(0).GetComponent<Renderer>().bounds.extents.y;
+
+        transform.position = position;
     }
     void Update()
     {
         AnimatorStateInfo info = m_animator.GetCurrentAnimatorStateInfo(0);
 
-        if (info.nameHash == m_destroyedNameHash)
+        if (info.fullPathHash == m_destroyedNameHash)
             Destroy(gameObject);
     }
     
@@ -30,7 +37,7 @@ public class BasicCannonBall : PhysicsObject {
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         m_animator.SetBool(m_hitHash, true);
-        rigidbody2D.isKinematic = true;
+        GetComponent<Rigidbody2D>().isKinematic = true;
         HitInfo info = new HitInfo();
         info.hitEnergy=Damage;
         foreach(GameObject x in m_targets)

@@ -18,7 +18,7 @@ public class GoblinSteering : BasicSteering
 	protected override void Start()
 	{
         Level.CurrentLevel.MobSpawned();
-        m_colliderRatio = collider2D.bounds.extents.y / collider2D.bounds.extents.x;
+        m_colliderRatio = GetComponent<Collider2D>().bounds.extents.y / GetComponent<Collider2D>().bounds.extents.x;
         SurfaceContact = new ContactPoint2D();
         //SurfaceContact.normal = Vector2.up;
         Targets = new List<GameObject>();

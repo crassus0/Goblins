@@ -12,7 +12,7 @@ using UnityEngine;
 
 public abstract class PhysicsObject : MonoBehaviour
 {
-    public float Mass{get{return rigidbody2D.mass;}}
+    public float Mass{get{return GetComponent<Rigidbody2D>().mass;}}
     public float Strength;
     public abstract int DestructionPrice { get; }
     

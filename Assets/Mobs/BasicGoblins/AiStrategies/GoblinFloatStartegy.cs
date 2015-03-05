@@ -19,7 +19,7 @@ public class GoblinFloatStartegy : BasicSteeringStrategy
 	public virtual void Steer(BasicSteering controller)
 	{
         GoblinSteering parentController = controller as GoblinSteering;
-        if (parentController.rigidbody2D.velocity.magnitude < 0.001f&& parentController.SurfaceContact.normal!=Vector2.zero)
+        if (parentController.GetComponent<Rigidbody2D>().velocity.magnitude < 0.001f&& parentController.SurfaceContact.normal!=Vector2.zero)
         {
             parentController.SendMessage("StandUp", parentController.SurfaceContact.normal);
         }

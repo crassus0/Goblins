@@ -77,13 +77,14 @@ public class BasicTower : CreatableObject
             {
                 GameObject target=m_targets[0];
                 m_timeToShoot += ShootCooldown;
-                Vector2 cannonBallPosition=renderer.bounds.min+CannonballPrefab.renderer.bounds.size;
-                cannonBallPosition.y+=renderer.bounds.size.y;
-                GameObject cannonBall = Instantiate(CannonballPrefab, cannonBallPosition, Quaternion.identity) as GameObject;
-                float d = ySpeed * ySpeed + 2 * (target.renderer.bounds.min.y - cannonBall.renderer.bounds.min.y) * Physics2D.gravity.y;
+                Vector2 cannonBallPosition = GetComponent<Renderer>().bounds.min;
+                cannonBallPosition.y+=GetComponent<Renderer>().bounds.size.y;
+                GameObject cannonBall = Instantiate(CannonballPrefab, Vector2.zero, Quaternion.identity) as GameObject;
+                cannonBall.SendMessage("SetPosition", cannonBallPosition);
+                float d = ySpeed * ySpeed + 2 * (target.transform.position.y - cannonBallPosition.y) * Physics2D.gravity.y;
                 float t = -(ySpeed + Mathf.Sqrt(d)) / Physics2D.gravity.y;
-                float xSpeed = (target.transform.position.x - cannonBallPosition.x) / t + target.rigidbody2D.velocity.x;
-                cannonBall.rigidbody2D.velocity = new Vector2(xSpeed, ySpeed);
+                float xSpeed = (target.transform.position.x - cannonBallPosition.x) / t + target.GetComponent<Rigidbody2D>().velocity.x;
+                cannonBall.GetComponent<Rigidbody2D>().velocity = new Vector2(xSpeed, ySpeed);
                 //cannonBall
             }
         }

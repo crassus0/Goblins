@@ -10,15 +10,15 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 [RequireComponent(typeof(EdgeCollider2D))]
-public class Terrain : PhysicsObject
+public class TerrainControls : PhysicsObject
 {
     
-    static List<Terrain> s_terrainComponents= new List<Terrain>();
+    static List<TerrainControls> s_terrainComponents= new List<TerrainControls>();
     public static ScreenBounds GetScreenBounds()
     {
         const float bound = 0f;
         ScreenBounds bounds = new ScreenBounds();
-        Terrain element = s_terrainComponents[0];
+        TerrainControls element = s_terrainComponents[0];
         bounds.left = element.transform.position.x+bound;
         bounds.bottom = element.transform.position.y+bound;
         bounds.top = element.transform.position.x+element.GetComponent<TerrainEditor2D>().Height-bound;
@@ -31,7 +31,7 @@ public class Terrain : PhysicsObject
         Vector2 edgePoint;
         for(int i=0; i<s_terrainComponents.Count; i++)
         {
-            EdgeCollider2D collider = s_terrainComponents[i].collider2D as EdgeCollider2D;
+            EdgeCollider2D collider = s_terrainComponents[i].GetComponent<Collider2D>() as EdgeCollider2D;
             float xOffset = s_terrainComponents[i].transform.position.x;
             edgePoint = collider.points.FirstOrDefault(x => x.x+xOffset >= point.x);
             if(edgePoint!=default(Vector2))
@@ -47,7 +47,7 @@ public class Terrain : PhysicsObject
         Vector2 edgePoint;
         for (int i = 0; i < s_terrainComponents.Count; i++)
         {
-            EdgeCollider2D collider = s_terrainComponents[i].collider2D as EdgeCollider2D;
+            EdgeCollider2D collider = s_terrainComponents[i].GetComponent<Collider2D>() as EdgeCollider2D;
             float xOffset = s_terrainComponents[i].transform.position.x;
             edgePoint = collider.points.FirstOrDefault(x => x.x + xOffset >= xCoord);
             if (edgePoint != default(Vector2))

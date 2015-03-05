@@ -17,13 +17,13 @@ public class GoblinLocomotion : BasicLocomotion
     float m_kickTime;
     protected override void MoveForward(float speed)
 	{
-        if (rigidbody2D.velocity.magnitude < 1 || Vector2.Dot(rigidbody2D.velocity, transform.right)<0)
-           rigidbody2D.AddRelativeForce(new Vector2(speed, 0));
+        if (GetComponent<Rigidbody2D>().velocity.magnitude < 1 || Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.right)<0)
+           GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(speed, 0));
         
 	}
     private void KeepBalance(float angle)
     {
-        rigidbody2D.angularVelocity = angle;
+        GetComponent<Rigidbody2D>().angularVelocity = angle;
         
         
     }
@@ -40,7 +40,7 @@ public class GoblinLocomotion : BasicLocomotion
         HitInfo info=new HitInfo();
         info.hitEnergy=m_kickEnergy;
         target.SendMessage("OnHit", info );
-        rigidbody2D.velocity = -transform.right.normalized;
+        GetComponent<Rigidbody2D>().velocity = -transform.right.normalized;
         m_kickTime = m_kickCooldown;
     }
     protected override void Update()
