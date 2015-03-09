@@ -7,9 +7,14 @@ public class CameraControls : MonoBehaviour
     public float orthoZoomSpeed = 0.5f;        // The rate of change of the orthographic size in orthographic mode.
     public float moveSpeed = 0.01f;
     public static float m_margins = 10;
+    Camera camera;
     Vector3 m_dragOrigin;
     ScreenBounds m_bounds;
     float m_ratio;
+    void Awake()
+    {
+        camera= GetComponent<Camera>();
+    }
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -68,9 +73,9 @@ public class CameraControls : MonoBehaviour
         if(Mathf.Abs(Input.mouseScrollDelta.y)>0.01f)
         {
             
-            GetComponent<Camera>().orthographicSize -= Input.mouseScrollDelta.y * orthoZoomSpeed;
+            camera.orthographicSize -= Input.mouseScrollDelta.y * orthoZoomSpeed;
             
-            GetComponent<Camera>().orthographicSize = Mathf.Max(GetComponent<Camera>().orthographicSize, 0.1f);
+            camera.orthographicSize = Mathf.Max(camera.orthographicSize, 0.1f);
         }
 #endif
         Camera mainCamera=Camera.main;
@@ -92,7 +97,7 @@ public class CameraControls : MonoBehaviour
             translation.y = m_bounds.top - m_margins - verticalSize * 2 - mainCamera.transform.position.y;
         mainCamera.transform.Translate(translation);
 
-        GetComponent<Camera>().transform.localScale = (Vector3)(Vector2.one * GetComponent<Camera>().orthographicSize)+Vector3.forward;
+        camera.transform.localScale = (Vector3)(Vector2.one * camera.orthographicSize)+Vector3.forward;
     }
     void Start()
     {

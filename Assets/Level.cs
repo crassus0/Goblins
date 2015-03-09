@@ -37,6 +37,7 @@ public class Level : MonoBehaviour
             ResourceAmount -= obj.Price;
         }
     }
+    
     public void OnObjectDestroyed(PhysicsObject obj)
     {
         ResourceAmount += obj.DestructionPrice;

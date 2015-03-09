@@ -9,19 +9,13 @@ public class BasicTower : CreatableObject
     List<GameObject> m_targets= new List<GameObject>();
     float ySpeed;
     BoxCollider2D m_hitCollider;
-    static int m_raycastMask;
     public override int DestructionPrice { get { return 10; } }
-    static BasicTower()
-    {
-        if(Application.isPlaying)
-            m_raycastMask = LayerMask.GetMask("Physics Objects");
-
-    }
+   
     protected override void Start()
     {
         m_timeToShoot =  ShootCooldown;
         float range = transform.GetChild(0).GetComponent<CircleCollider2D>().radius;
-        ySpeed = Mathf.Sqrt(-range * Physics2D.gravity.y) ;
+        ySpeed = Mathf.Sqrt(-range * Physics2D.gravity.y);
         m_hitCollider = GetComponent<BoxCollider2D>();
        
     }
@@ -43,7 +37,7 @@ public class BasicTower : CreatableObject
         Vector3 newPosition = position;
         Vector2 raycastPoint = new Vector2(position.x - m_hitCollider.bounds.extents.x, 150);
         //gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-        RaycastHit2D hit = Physics2D.Raycast(raycastPoint, -Vector2.up, 1000, m_raycastMask);
+        RaycastHit2D hit = Physics2D.Raycast(raycastPoint, -Vector2.up, 1000, Constants.RaycastMaskPhysics);
         float yCoord = hit.point.y;
         raycastPoint.x=  position.x;
         hit = Physics2D.Raycast(raycastPoint, -Vector2.up, Mathf.Infinity,1);
@@ -79,12 +73,10 @@ public class BasicTower : CreatableObject
                 m_timeToShoot += ShootCooldown;
                 Vector2 cannonBallPosition = GetComponent<Renderer>().bounds.min;
                 cannonBallPosition.y+=GetComponent<Renderer>().bounds.size.y;
-                GameObject cannonBall = Instantiate(CannonballPrefab, Vector2.zero, Quaternion.identity) as GameObject;
-                cannonBall.SendMessage("SetPosition", cannonBallPosition);
-                float d = ySpeed * ySpeed + 2 * (target.transform.position.y - cannonBallPosition.y) * Physics2D.gravity.y;
-                float t = -(ySpeed + Mathf.Sqrt(d)) / Physics2D.gravity.y;
-                float xSpeed = (target.transform.position.x - cannonBallPosition.x) / t + target.GetComponent<Rigidbody2D>().velocity.x;
-                cannonBall.GetComponent<Rigidbody2D>().velocity = new Vector2(xSpeed, ySpeed);
+                GameObject cannonBall = Instantiate(CannonballPrefab) as GameObject;
+                cannonBall.GetComponent<BasicCannonBall>().SetPosition(cannonBallPosition);
+                cannonBall.GetComponent<BasicCannonBall>().Aim(target, ySpeed);
+               
                 //cannonBall
             }
         }
