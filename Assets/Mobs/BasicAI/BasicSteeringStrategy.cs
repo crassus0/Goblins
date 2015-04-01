@@ -12,6 +12,7 @@ using UnityEngine;
 public interface BasicSteeringStrategy
 {
 	void Steer(BasicSteering controller);
-
+    void ExitState(BasicSteering controller);
+    void EnterState(BasicSteering controller);
 }
 

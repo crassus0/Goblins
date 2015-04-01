@@ -28,7 +28,10 @@ public class BasicSteering : MonoBehaviour
 	}
     public virtual void SetStrategy(BasicSteeringStrategy strategy)
     {
+        if (Strategy!=null)
+            Strategy.ExitState(this);
         Strategy = strategy;
+        Strategy.EnterState(this);
     }
 }
 

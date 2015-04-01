@@ -25,5 +25,16 @@ public class GoblinFloatStartegy : BasicSteeringStrategy
         }
 	}
 
+
+
+    public virtual void ExitState(BasicSteering controller)
+    {
+       
+    }
+
+    public virtual void EnterState(BasicSteering controller)
+    {
+        
+    }
 }
 

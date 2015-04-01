@@ -11,13 +11,14 @@ using System.Text;
 using UnityEngine;
 public class JumpingGoblinLocomotion : GoblinLocomotion
 {
-    Animator m_animator;
+    public Animator m_animator;
     int m_parachuteOpenTrigger = Animator.StringToHash("ParachuteOpenTrigger");
     int m_parachuteCloseTrigger = Animator.StringToHash("ParachuteCloseTrigger");
     bool m_parachuteOpen = false;
 	public virtual void Jump(Vector2 direction)
 	{
         GetComponent<Rigidbody2D>().velocity += direction;
+        GetComponent<JumpingGoblinPhysics>().SetJump();
 
 	}
     public virtual void Break(float k)
@@ -28,7 +29,6 @@ public class JumpingGoblinLocomotion : GoblinLocomotion
     public void ParachuteOpen()
     {
         if (m_parachuteOpen) return;
-        m_animator = GetComponent<Animator>();
         m_animator.SetTrigger(m_parachuteOpenTrigger);
         m_parachuteOpen = true;
 
@@ -37,7 +37,6 @@ public class JumpingGoblinLocomotion : GoblinLocomotion
     public void ParachuteClose()
     {
         if (!m_parachuteOpen) return;
-        m_animator = GetComponent<Animator>();
         m_animator.SetTrigger(m_parachuteCloseTrigger);
         m_parachuteOpen = false;
     }
