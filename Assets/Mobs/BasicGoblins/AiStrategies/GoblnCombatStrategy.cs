@@ -18,4 +18,15 @@ public class GoblnCombatStrategy : BasicSteeringStrategy {
         }
        parent.SendMessage("Kick", steering.Targets[0]);
     }
+
+
+    public virtual void ExitState(BasicSteering controller)
+    {
+        
+    }
+
+    public virtual void EnterState(BasicSteering controller)
+    {
+        
+    }
 }

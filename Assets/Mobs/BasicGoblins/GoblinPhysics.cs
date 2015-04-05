@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class GoblinPhysics : PhysicsObject {
-    float m_energy;
+    protected float m_energy{get;set;}
     protected override void Start()
     {
     }
@@ -24,7 +24,7 @@ public class GoblinPhysics : PhysicsObject {
         }
         if (Strength <= 0)
             Destroy(gameObject);
-        m_energy = Mass * GetComponent<Rigidbody2D>().velocity.SqrMagnitude() / 2;
+       
     }
 
     protected override void OnCollisionExit2D(Collision2D collision)
