@@ -33,12 +33,6 @@ public class Brick : CreatableObject {
     {
     }
 
-    protected override void OnHit(HitInfo info)
-    {
-        Strength -= info.hitEnergy;
-        if (Strength <= 0)
-            Destroy(gameObject);
-    }
     public override void ScaleOnCreation(float scale)
     {
     }

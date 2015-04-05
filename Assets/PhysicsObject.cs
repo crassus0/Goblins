@@ -12,10 +12,15 @@ using UnityEngine;
 
 public abstract class PhysicsObject : MonoBehaviour
 {
-    public float Mass{get{return GetComponent<Rigidbody2D>().mass;}}
+    protected new Rigidbody2D rigidbody2D { get { return m_rigidbody; } }
+    Rigidbody2D m_rigidbody;
+    public float Mass { get { return rigidbody2D.mass; } }
     public float Strength;
     public abstract int DestructionPrice { get; }
-    
+    protected virtual void Awake()
+    {
+        m_rigidbody=GetComponent<Rigidbody2D>();
+    }
 	protected abstract  void Start();
 
 	protected abstract void FixedUpdate();

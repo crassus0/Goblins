@@ -25,7 +25,7 @@ public class BasicCannonBall : PhysicsObject {
         float d = ySpeed * ySpeed + 2 * (target.transform.position.y - transform.position.y) * Physics2D.gravity.y;
         float t = -(ySpeed + Mathf.Sqrt(d)) / Physics2D.gravity.y;
         float xSpeed = (target.transform.position.x - transform.position.x) / t + target.GetComponent<Rigidbody2D>().velocity.x;
-        GetComponent<Rigidbody2D>().velocity = new Vector2(xSpeed, ySpeed);
+        rigidbody2D.velocity = new Vector2(xSpeed, ySpeed);
     }
     void Update()
     {
