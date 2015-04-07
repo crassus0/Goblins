@@ -15,26 +15,26 @@ public class GoblinLocomotion : BasicLocomotion
     public float m_kickCooldown = 1;
     public float m_kickEnergy = 20;
     float m_kickTime;
-    protected override void MoveForward(float speed)
+    public override void MoveForward(float speed)
 	{
         if (GetComponent<Rigidbody2D>().velocity.magnitude < 1 || Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.right)<0)
            GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(speed, 0));
         
 	}
-    private void KeepBalance(float angle)
+    public void KeepBalance(float angle)
     {
         GetComponent<Rigidbody2D>().angularVelocity = angle;
         
         
     }
-    private void StandUp(Vector2 normal)
+    public void StandUp(Vector2 normal)
     {
 
         float angle = Vector2.Angle(normal, Vector2.up);
         transform.eulerAngles=new Vector3(0,0,angle);
         //Debug.Log(transform.rotation.eulerAngles);
     }
-    protected override void Kick(GameObject target)
+    public override void Kick(GameObject target)
     {
         if(m_kickTime>0)return;
         HitInfo info=new HitInfo();

@@ -14,41 +14,28 @@ public class GoblinSteering : BasicSteering
     public ContactPoint2D SurfaceContact { get; set; }
     public List<GameObject> Targets { get; set; }
     HashSet<GameObject> m_terrain=new HashSet<GameObject>();
-    float m_colliderRatio;
-	protected override void Start()
+    //float m_colliderRatio;
+   	protected override void Start()
 	{
         Level.CurrentLevel.MobSpawned();
-        m_colliderRatio = GetComponent<Collider2D>().bounds.extents.y / GetComponent<Collider2D>().bounds.extents.x;
+        //m_colliderRatio = GetComponent<Collider2D>().bounds.extents.y / GetComponent<Collider2D>().bounds.extents.x;
         SurfaceContact = new ContactPoint2D();
         //SurfaceContact.normal = Vector2.up;
         Targets = new List<GameObject>();
-        SetStrategy(new GoblinFloatStartegy());
+        SetStrategy(GoblinFloatStrategy.Instance());
 	}
     protected void OnCollisionEnter2D(Collision2D collision)
     {
         foreach (ContactPoint2D point in collision.contacts)
         {
-
-
-            Vector2 hitDirection = transform.InverseTransformDirection(point.point - (Vector2)transform.position);
-            float hitRatio = Mathf.Abs(hitDirection.y / hitDirection.x);
-            if (hitRatio < m_colliderRatio && hitDirection.x > 0)
-            {
-                SetStrategy(new GoblnCombatStrategy());
-                if (!Targets.Contains(collision.collider.gameObject))
-                    Targets.Add(collision.collider.gameObject);
-                break;
-            }
-
-            if (hitRatio > m_colliderRatio && hitDirection.y < 0)
+            if (Mathf.Abs(point.normal.x)<point.normal.y)
             {
                 SurfaceContact = point;
                 if (!m_terrain.Contains(collision.gameObject))
                     m_terrain.Add(collision.gameObject);
-                if (Targets.Count == 0)
-                    SetStrategy(new GoblinMoveStrategy());
                 break;
             }
+            
         }
     }
 
@@ -56,26 +43,16 @@ public class GoblinSteering : BasicSteering
 
     protected void OnCollisionExit2D(Collision2D collision)
     {
-       RemoveTarget(collision.collider.gameObject);
        m_terrain.Remove(collision.gameObject);
        if (m_terrain.Count == 0)
        {
-           SetStrategy(new GoblinFloatStartegy());
            SurfaceContact = new ContactPoint2D();
        }
        
     }
-    public void RemoveTarget(GameObject target)
-    {
-        Targets.Remove(target);
-        if(Targets.Count==0)
-        {
-            SetStrategy(new GoblinMoveStrategy());
-        }
-    }
+   
     protected void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.DrawRay(collision.contacts[collision.contacts.Length - 1].point, -transform.up*0.01f, Color.red); 
         ContactPoint2D realContact = new ContactPoint2D();
         foreach(ContactPoint2D contact in collision.contacts)
         {
@@ -87,8 +64,7 @@ public class GoblinSteering : BasicSteering
             if (!m_terrain.Contains(collision.gameObject))
             {
                 m_terrain.Add(collision.gameObject);
-                if (Targets.Count == 0)
-                    SetStrategy(new GoblinMoveStrategy());
+                
             }
             SurfaceContact = realContact;
         }
@@ -97,13 +73,9 @@ public class GoblinSteering : BasicSteering
             m_terrain.Remove(collision.collider.gameObject);
             if (m_terrain.Count == 0)
             {
-                SetStrategy(new GoblinFloatStartegy());
-                SurfaceContact = collision.contacts[collision.contacts.Length - 1];
+                SurfaceContact = new ContactPoint2D();
             }
         }
-    }
-    void Update()
-    {
     }
 }
 

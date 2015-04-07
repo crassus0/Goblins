@@ -11,7 +11,8 @@ using System.Text;
 using UnityEngine;
 public interface BasicSteeringStrategy
 {
-	void Steer(BasicSteering controller);
+	void SteerPhysics(BasicSteering controller);
+    void SteerOther(BasicSteering controller);
     void ExitState(BasicSteering controller);
     void EnterState(BasicSteering controller);
 }

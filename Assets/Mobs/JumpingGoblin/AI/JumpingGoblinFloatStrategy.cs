@@ -10,21 +10,42 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public class JumpingGoblinFloatStrategy : GoblinFloatStartegy
+public class JumpingGoblinFloatStrategy : GoblinFloatStrategy
 {
-	public override void Steer(BasicSteering controller)
+    public static new JumpingGoblinFloatStrategy Instance()
+    {
+        if (s_strategy == null)
+            s_strategy = new JumpingGoblinFloatStrategy();
+        return s_strategy;
+    }
+    static JumpingGoblinFloatStrategy s_strategy;
+    public static float ParachuteOpenSpeed { get { return -1.5f; } }
+    protected JumpingGoblinFloatStrategy()
+    {
+    }
+	public override void SteerPhysics(BasicSteering controller)
 	{
-        if (controller.GetComponent<Rigidbody2D>().velocity.y < -1.5)
+        JumpingGoblinSteering parentController = controller as JumpingGoblinSteering;
+        Vector2 normal = Vector2.up;
+        float angle = 0;
+        angle = Vector2.Angle(parentController.transform.up, normal) * Mathf.Sign(parentController.transform.up.x - normal.x);
+        angle = Utility.NormalizeAngle(angle);
+        parentController.GetComponent<GoblinLocomotion>().KeepBalance(angle);
+        if (controller.GetComponent<Rigidbody2D>().velocity.y < ParachuteOpenSpeed)
         {
             controller.SendMessage("Break", 4f);
             controller.SendMessage("ParachuteOpen");
-            float angle = controller.transform.rotation.eulerAngles.z;
-            if (angle > 180)
-                angle -= 360;
-            controller.GetComponent<Rigidbody2D>().AddTorque(-angle * 0.01f);
         }
 
 	}
+    public override void SteerOther(BasicSteering controller)
+    {
+        JumpingGoblinSteering steering = controller as JumpingGoblinSteering;
+        if (steering.SurfaceContact.normal != Vector2.zero)
+        {
+            controller.SetStrategy(JumpingGoblinMoveStrategy.Instance());
+        }
+    }
     public override void ExitState(BasicSteering controller)
     {
         controller.SendMessage("ParachuteClose");

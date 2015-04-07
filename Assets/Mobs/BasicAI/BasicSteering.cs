@@ -24,8 +24,12 @@ public class BasicSteering : MonoBehaviour
 
 	protected virtual void FixedUpdate()
 	{
-        Strategy.Steer(this);
+        Strategy.SteerPhysics(this);
 	}
+    protected virtual void Update()
+    {
+        Strategy.SteerOther(this);
+    }
     public virtual void SetStrategy(BasicSteeringStrategy strategy)
     {
         if (Strategy!=null)

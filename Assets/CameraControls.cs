@@ -7,7 +7,7 @@ public class CameraControls : MonoBehaviour
     public float orthoZoomSpeed = 0.5f;        // The rate of change of the orthographic size in orthographic mode.
     public float moveSpeed = 0.01f;
     public static float m_margins = 10;
-    Camera camera;
+    new Camera camera;
     Vector3 m_dragOrigin;
     ScreenBounds m_bounds;
     float m_ratio;

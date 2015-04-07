@@ -11,11 +11,20 @@ using System.Text;
 using UnityEngine;
 public class GoblinMoveStrategy : BasicSteeringStrategy
 {
-    public GoblinMoveStrategy()
+    public static GoblinMoveStrategy Instance()
+    {
+
+        if (s_strategy == null)
+            s_strategy = new GoblinMoveStrategy();
+        return s_strategy;
+
+    }
+    static GoblinMoveStrategy s_strategy;
+    protected GoblinMoveStrategy()
     {
         
     }
-    public virtual void Steer(BasicSteering parent)
+    public virtual void SteerPhysics(BasicSteering parent)
     {
         GoblinSteering parentController = parent as GoblinSteering;
         Vector2 normal = parentController.SurfaceContact.normal;
@@ -24,9 +33,12 @@ public class GoblinMoveStrategy : BasicSteeringStrategy
         float angle = 0;
         angle = Vector2.Angle(parentController.transform.up, normal) * Mathf.Sign(parentController.transform.up.x - normal.x);
         angle = Utility.NormalizeAngle(angle);
-        parentController.SendMessage("MoveForward", 20);
-        parentController.SendMessage("KeepBalance", angle);
-        
+        parentController.GetComponent<GoblinLocomotion>().MoveForward(20);
+        parentController.GetComponent<GoblinLocomotion>().KeepBalance(angle);
+        if (parentController.GetComponent<Rigidbody2D>().velocity.magnitude < 0.001f && parentController.SurfaceContact.normal != Vector2.zero)
+        {
+            parentController.GetComponent<GoblinLocomotion>().StandUp(parentController.SurfaceContact.normal);
+        }
     }
 
 
@@ -39,6 +51,23 @@ public class GoblinMoveStrategy : BasicSteeringStrategy
     public virtual void EnterState(BasicSteering controller)
     {
         
+    }
+
+
+    public virtual void SteerOther(BasicSteering controller)
+    {
+        GoblinSteering steering = controller as GoblinSteering;
+        if(steering.SurfaceContact.normal == Vector2.zero)
+        {
+            controller.SetStrategy(GoblinFloatStrategy.Instance());
+        }
+
+        GoblinCombatStrategy.CheckTargets(steering);
+        if(steering.Targets.Count!=0)
+        {
+            controller.SetStrategy(GoblinCombatStrategy.Instance());
+        }
+ 
     }
 }
 

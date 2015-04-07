@@ -16,6 +16,11 @@ public class JumpingGoblinPhysics : GoblinPhysics
         
         base.OnCollisionExit2D(collision);
     }
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!(collision.contacts[0].normal.y > 0 && rigidbody2D.velocity.y < JumpingGoblinFloatStrategy.ParachuteOpenSpeed))
+        { base.OnCollisionEnter2D(collision); }
+    }
     public void SetJump()
     {
         isJumping = true;

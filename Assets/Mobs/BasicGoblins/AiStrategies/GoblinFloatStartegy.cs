@@ -9,22 +9,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-public class GoblinFloatStartegy : BasicSteeringStrategy
+public class GoblinFloatStrategy : BasicSteeringStrategy
 {
-
-    public GoblinFloatStartegy()
+    public static GoblinFloatStrategy Instance()
+    {
+        if (s_strategy == null)
+            s_strategy = new GoblinFloatStrategy();
+        return s_strategy;
+    }
+    static GoblinFloatStrategy s_strategy;
+    protected GoblinFloatStrategy()
     {
 
     }
-	public virtual void Steer(BasicSteering controller)
+	public virtual void SteerPhysics(BasicSteering controller)
 	{
-        GoblinSteering parentController = controller as GoblinSteering;
-        if (parentController.GetComponent<Rigidbody2D>().velocity.magnitude < 0.001f&& parentController.SurfaceContact.normal!=Vector2.zero)
-        {
-            parentController.SendMessage("StandUp", parentController.SurfaceContact.normal);
-        }
+     
+        
 	}
-
+    public virtual void SteerOther(BasicSteering controller)
+    {
+        GoblinSteering steering = controller as GoblinSteering;
+        if (steering.SurfaceContact.normal != Vector2.zero)
+        {
+            controller.SetStrategy(GoblinMoveStrategy.Instance());
+        }
+    }
 
 
     public virtual void ExitState(BasicSteering controller)
@@ -36,5 +46,8 @@ public class GoblinFloatStartegy : BasicSteeringStrategy
     {
         
     }
+
+
+    
 }
 

@@ -11,20 +11,31 @@ using System.Text;
 using UnityEngine;
 public class JumpingGoblinMoveStrategy : GoblinMoveStrategy
 {
-	public override void Steer(BasicSteering parent)
-	{
-		JumpingGoblinSteering jumpParent=parent as JumpingGoblinSteering;
-        base.Steer(jumpParent);
+    public static new JumpingGoblinMoveStrategy Instance()
+    {
+        if (s_strategy == null)
+                s_strategy = new JumpingGoblinMoveStrategy();
+        return s_strategy;
+    }
+    static JumpingGoblinMoveStrategy s_strategy;
+    protected JumpingGoblinMoveStrategy()
+    {
+    }
 
-        jumpParent.DelayTime+=Time.fixedDeltaTime;
-        if (jumpParent.DelayTime>2)
+    public override void SteerOther(BasicSteering controller)
+    {
+        GoblinSteering steering = controller as GoblinSteering;
+        if (steering.SurfaceContact.normal == Vector2.zero)
         {
-            jumpParent.DelayTime-=2;
-            jumpParent.SendMessage("Jump",new Vector2(2,10));
+            controller.SetStrategy(JumpingGoblinFloatStrategy.Instance());
         }
-       
 
-	}
+        GoblinCombatStrategy.CheckTargets(steering,2);
+        if (steering.Targets.Count != 0)
+        {
+            controller.SetStrategy(JumpingGoblinCombatStrategy.Instance());
+        }
 
+    }
 }
 

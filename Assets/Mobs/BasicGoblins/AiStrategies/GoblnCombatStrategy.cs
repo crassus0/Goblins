@@ -1,24 +1,60 @@
 ﻿using UnityEngine;
+using System.Linq;
 using System.Collections.Generic;
 
-public class GoblnCombatStrategy : BasicSteeringStrategy {
-    public GoblnCombatStrategy()
+public class GoblinCombatStrategy : BasicSteeringStrategy {
+    public static GoblinCombatStrategy Instance()
     {
+        if (s_strategy == null)
+            s_strategy = new GoblinCombatStrategy();
+        return s_strategy;
     }
-    public void Steer(BasicSteering parent)
-    {
-        GoblinSteering steering = parent as GoblinSteering;
-        if (steering.Targets.Count == 0)
-            return;
-        while(steering.Targets[0]==null)
-        {
-            steering.RemoveTarget(steering.Targets[0]);
-            if (steering.Targets.Count == 0)
-                return;
-        }
-       parent.SendMessage("Kick", steering.Targets[0]);
-    }
+    static GoblinCombatStrategy s_strategy;
 
+    public static readonly HashSet<string> TargetTags = new HashSet<string>(new string[] { "ShootingObject", "DestroyableObject", "MainTarget", "Enemy" });
+
+    public static void CheckTargets(GoblinSteering controller, float distance=1f)
+    {
+        IEnumerable<GameObject> hitsTemp = from u in BasicSteeringUtility.GetForwardObjectsList(controller, distance)
+                                           where TargetTags.Contains(u.collider.tag)
+                                           orderby -u.point.x
+                                           select u.collider.gameObject;
+        controller.Targets = new List<GameObject>(hitsTemp);
+    }
+    protected GoblinCombatStrategy()
+    {
+    }
+    public virtual void SteerOther(BasicSteering controller)
+    {
+        
+        GoblinSteering steering = controller as GoblinSteering;
+        if (steering.SurfaceContact.normal == Vector2.zero)
+        {
+            steering.SetStrategy(GoblinFloatStrategy.Instance());
+        }
+        CheckTargets(steering);
+        if (steering.Targets.Count == 0)
+        {
+            steering.SetStrategy(GoblinMoveStrategy.Instance());
+
+        }
+        else
+        {
+            GameObject mainTarget = steering.Targets[0];
+            if (mainTarget.GetComponent<Collider2D>().bounds.min.x - steering.GetComponent<Collider2D>().bounds.max.x > 0.1)
+            {
+                steering.GetComponent<GoblinLocomotion>().MoveForward(20 * Time.deltaTime / Time.fixedDeltaTime);
+            }
+            else if(mainTarget.tag!="Enemy")
+            {
+                controller.GetComponent<GoblinLocomotion>().Kick(mainTarget);
+            }
+        }
+    }
+    public virtual void SteerPhysics(BasicSteering controller)
+    {
+        
+    }
 
     public virtual void ExitState(BasicSteering controller)
     {
@@ -29,4 +65,7 @@ public class GoblnCombatStrategy : BasicSteeringStrategy {
     {
         
     }
+
+    
+
 }

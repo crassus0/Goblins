@@ -20,7 +20,7 @@ public abstract class BasicLocomotion : MonoBehaviour
 	{
 	}
 
-	protected abstract void MoveForward(float speed);
-    protected abstract void Kick(GameObject target);
+	public abstract void MoveForward(float speed);
+    public abstract void Kick(GameObject target);
 }
 
