@@ -38,17 +38,14 @@ public class GoblinCombatStrategy : BasicSteeringStrategy {
             steering.SetStrategy(GoblinMoveStrategy.Instance());
 
         }
-        else
+        else if (steering.Targets[0].tag != "Enemy")
         {
             GameObject mainTarget = steering.Targets[0];
             if (mainTarget.GetComponent<Collider2D>().bounds.min.x - steering.GetComponent<Collider2D>().bounds.max.x > 0.1)
             {
                 steering.GetComponent<GoblinLocomotion>().MoveForward(20 * Time.deltaTime / Time.fixedDeltaTime);
             }
-            else if(mainTarget.tag!="Enemy")
-            {
-                controller.GetComponent<GoblinLocomotion>().Kick(mainTarget);
-            }
+
         }
     }
     public virtual void SteerPhysics(BasicSteering controller)

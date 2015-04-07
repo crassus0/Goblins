@@ -39,6 +39,34 @@ public abstract class PhysicsObject : MonoBehaviour
     {
         Level.CurrentLevel.OnObjectDestroyed(this);
     }
+    public float FindMaxHeight()
+    {
+        Collider2D collider = GetComponent<Collider2D>();
+        Vector2 raycastOrigin = transform.position;
+        float maxHeight = collider.bounds.max.y;
+        IEnumerable<RaycastHit2D> hits = Physics2D.RaycastAll(raycastOrigin, Vector2.up, 1000, Constants.RaycastMaskPhysics);
+        if (hits.Any() )
+        {
+            float max = hits.Max(x => x.point.y);
+            Debug.Log(max);
+            maxHeight = max > maxHeight ? max : maxHeight;
+        }
+        raycastOrigin.x = collider.bounds.min.x + 0.01f;
+        hits = Physics2D.RaycastAll(raycastOrigin, Vector2.up, 1000, Constants.RaycastMaskPhysics);
+        if (hits.Any())
+        {
+            float max = hits.Max(x => x.point.y);
+            maxHeight = max > maxHeight ? max : maxHeight;
+        }
+        raycastOrigin.x = collider.bounds.max.x - 0.01f;
+        hits = Physics2D.RaycastAll(raycastOrigin, Vector2.up, 1000, Constants.RaycastMaskPhysics);
+        if (hits.Any())
+        {
+            float max = hits.Max(x => x.point.y);
+            maxHeight = max > maxHeight ? max : maxHeight;
+        }
+        return maxHeight;
+    }
 }
 public struct HitInfo
 {
