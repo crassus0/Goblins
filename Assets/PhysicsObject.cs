@@ -48,7 +48,6 @@ public abstract class PhysicsObject : MonoBehaviour
         if (hits.Any() )
         {
             float max = hits.Max(x => x.point.y);
-            Debug.Log(max);
             maxHeight = max > maxHeight ? max : maxHeight;
         }
         raycastOrigin.x = collider.bounds.min.x + 0.01f;

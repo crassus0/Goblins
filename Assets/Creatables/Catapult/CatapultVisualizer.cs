@@ -4,11 +4,16 @@ using System.Collections;
 public class CatapultVisualizer : MonoBehaviour 
 {
     public GameObject Shell;
-    public GameObject EmptyShell;
-    public Transform ShellTransform;
-
-    public void DisconnectShell()
+    Animator m_animator;
+    static int m_shootHash = Animator.StringToHash("Shoot");
+    void Start()
     {
-        Shell.transform.parent = null;
+        m_animator = GetComponent<Animator>();
     }
+    public void Shoot()
+    {
+        m_animator.SetTrigger(m_shootHash);
+    }
+
+    
 }

@@ -11,12 +11,12 @@ public class BasicCannonBall : PhysicsObject {
     int m_destroyedNameHash = Animator.StringToHash("Base Layer.Destroyed");
     protected override void Start()
     {
-        m_animator = transform.GetChild(0).GetComponent<Animator>();
+        m_animator = transform.GetComponentInChildren<Animator>();
     }
     public void SetPosition(Vector2 position)
     {
-        position.x -= transform.GetChild(0).GetComponent<Renderer>().bounds.extents.x;
-        position.y += transform.GetChild(0).GetComponent<Renderer>().bounds.extents.y;
+        position.x -= transform.GetComponentInChildren<Renderer>().bounds.extents.x;
+        position.y += transform.GetComponentInChildren<Renderer>().bounds.extents.y;
 
         transform.position = position;
     }
@@ -26,6 +26,10 @@ public class BasicCannonBall : PhysicsObject {
         float t = -(ySpeed + Mathf.Sqrt(d)) / Physics2D.gravity.y;
         float xSpeed = (target.transform.position.x - transform.position.x) / t + target.GetComponent<Rigidbody2D>().velocity.x;
         rigidbody2D.velocity = new Vector2(xSpeed, ySpeed);
+    }
+    public void AimDirection(Vector2 dir)
+    {
+        rigidbody2D.velocity = dir.normalized;
     }
     void Update()
     {

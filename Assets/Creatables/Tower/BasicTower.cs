@@ -14,7 +14,7 @@ public class BasicTower : CreatableObject
     protected override void Start()
     {
         m_timeToShoot =  ShootCooldown;
-        float range = transform.GetChild(0).GetComponent<CircleCollider2D>().radius;
+        float range = transform.GetComponentInChildren<CircleCollider2D>().radius;
         ySpeed = Mathf.Sqrt(-range * Physics2D.gravity.y);
         m_hitCollider = GetComponent<BoxCollider2D>();
        

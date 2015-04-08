@@ -20,7 +20,6 @@ public class JumpingGoblinLocomotion : GoblinLocomotion
 	{
         if (direction.magnitude > m_maxJumpSpeed)
             direction = direction.normalized * m_maxJumpSpeed;
-        Debug.Log(direction.magnitude);
         GetComponent<Rigidbody2D>().velocity += direction;
         GetComponent<JumpingGoblinPhysics>().SetJump();
 
