@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: bbd4d3ac7e016a841b0c2589d87de703
-timeCreated: 1428228703
+timeCreated: 1428513068
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: catapult_main
     21300002: catapult_lodge
+    21300004: catapult_tortion
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -68,6 +69,16 @@ TextureImporter:
         y: 206
         width: 382
         height: 25
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: catapult_tortion
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 84
+        width: 40
+        height: 75
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -11,7 +11,7 @@ public class CatapultTouchControls : MonoBehaviour
     public Vector3 ShootStartPosition= new Vector3(0, 1.5f);
     public Vector2 ShootDirection = new Vector2(-6f, 1f).normalized;
     public float ShootDelay = 0.1f;
-    public float RechargeDelay;
+    public float RechargeDelay = 5.1f;
     static readonly float s_minSpeed = 4;
     static readonly float s_maxSpeed = 15;
     static readonly float s_maxTime = 1;
@@ -19,6 +19,7 @@ public class CatapultTouchControls : MonoBehaviour
     float m_rechargeTime=0;
 	public void OnPointerDown()
     {
+        Visualizer.Aim();
         m_pointerDown = true;
     }
     public void OnPointerUp()

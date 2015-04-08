@@ -5,7 +5,8 @@ public class CatapultVisualizer : MonoBehaviour
 {
     public GameObject Shell;
     Animator m_animator;
-    static int m_shootHash = Animator.StringToHash("Shoot");
+    static int m_shootHash = Animator.StringToHash("CatapultShoot");
+    static int m_aimHash = Animator.StringToHash("CatapultAim");
     void Start()
     {
         m_animator = GetComponent<Animator>();
@@ -14,6 +15,9 @@ public class CatapultVisualizer : MonoBehaviour
     {
         m_animator.SetTrigger(m_shootHash);
     }
-
+    public void Aim()
+    {
+        m_animator.SetTrigger(m_aimHash);
+    }
     
 }

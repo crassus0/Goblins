@@ -58,7 +58,7 @@ public class GUIMachine: MonoBehaviour {
             position.z = 10;
             m_rotatedObject = Instantiate(SelectedPrefab) as GameObject;
             m_rotatedObject.SendMessage("DragOnCretaion", (Vector2)position);
-            m_basicRenderSize = m_rotatedObject.GetComponent<Renderer>().bounds.extents.x/transform.localScale.x;
+            m_basicRenderSize = m_rotatedObject.GetComponentInChildren<Renderer>().bounds.extents.x/transform.localScale.x;
             m_rotatedObject.GetComponent<Rigidbody2D>().isKinematic = true;
             m_rotatedObject.GetComponent<Collider2D>().enabled = false;
             SelectedPrefab = null;
