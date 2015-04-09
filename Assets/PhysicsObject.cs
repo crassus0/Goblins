@@ -39,7 +39,7 @@ public abstract class PhysicsObject : MonoBehaviour
     {
         Level.CurrentLevel.OnObjectDestroyed(this);
     }
-    public float FindMaxHeight()
+    public virtual float FindMaxHeight()
     {
         Collider2D collider = GetComponent<Collider2D>();
         Vector2 raycastOrigin = transform.position;

@@ -29,7 +29,7 @@ public abstract class CreatableObject:PhysicsObject
     {
         Vector3 newPosition=position;
         float yCoord = TerrainControls.TerrainHeight(position.x);
-        newPosition.y = position.y > yCoord + GetComponent<Renderer>().bounds.extents.y ? position.y : yCoord + GetComponent<Renderer>().bounds.extents.y;
+        newPosition.y = position.y > yCoord + GetComponentInChildren<Renderer>().bounds.extents.y ? position.y : yCoord + GetComponentInChildren<Renderer>().bounds.extents.y;
         transform.position = newPosition;
     }
     public virtual void Place()
