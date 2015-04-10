@@ -5,6 +5,7 @@ public class NetSegment : PhysicsObject {
 
 	// Use this for initialization
     float m_size;
+    public NetController m_parentNet;
 	protected override void Start () 
     {
         
@@ -29,7 +30,7 @@ public class NetSegment : PhysicsObject {
         float sizeX = m_size * Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.Deg2Rad) / 2;
         float sizeY = m_size * Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.Deg2Rad) / 2;
         Vector3 max = new Vector3(sizeX, sizeY);
-        return transform.localPosition - max;
+        return transform.position - max;
     }
     public Vector2 GetRightPoint()
     {
@@ -37,7 +38,7 @@ public class NetSegment : PhysicsObject {
         float sizeX = m_size * Mathf.Cos(transform.rotation.eulerAngles.z * Mathf.Deg2Rad) / 2;
         float sizeY = m_size * Mathf.Sin(transform.rotation.eulerAngles.z * Mathf.Deg2Rad) / 2;
         Vector3 max = new Vector3(sizeX, sizeY);
-        return transform.localPosition + max;
+        return transform.position + max;
     }
 
     public override int DestructionPrice
@@ -46,7 +47,7 @@ public class NetSegment : PhysicsObject {
     }
     protected override void OnDestroy()
     {
-        Destroy(transform.parent.gameObject);
+        Destroy(m_parentNet.gameObject);
         base.OnDestroy();
 
     }
