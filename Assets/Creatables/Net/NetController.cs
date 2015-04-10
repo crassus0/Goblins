@@ -3,19 +3,19 @@ using System.Collections;
 
 public class NetController : CreatableObject {
     public NetVisualizer m_visualizer;
-    public NetSegment[] segments;
+    public NetSegment[] m_segments;
     protected override void Start()
     {
 
     }
     public override string IconName
     {
-        get { throw new System.NotImplementedException(); }
+        get { return "Net"; }
     }
 
     public override int Price
     {
-        get { throw new System.NotImplementedException(); }
+        get { return 100; }
     }
 
     public override int DestructionPrice
@@ -38,6 +38,14 @@ public class NetController : CreatableObject {
     protected override void OnCollisionExit2D(Collision2D collision)
     {
     }
-
+    public override void Place()
+    {
+        foreach (NetSegment x in m_segments)
+        {
+            x.GetComponent<Collider2D>().isTrigger = false;
+            x.GetComponent<Rigidbody2D>().isKinematic = false;
+        }
+        Level.CurrentLevel.CreateObject(this);
+    }
 
 }

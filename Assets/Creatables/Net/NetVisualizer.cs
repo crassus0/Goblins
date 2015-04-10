@@ -66,11 +66,11 @@ public class NetVisualizer : MonoBehaviour
     void GetVertecies()
     {
         verticies.Clear();
-        for(int i=0; i<m_net.segments.Length; i++)
+        for(int i=0; i<m_net.m_segments.Length; i++)
         {
-            verticies.Add(m_net.segments[i].GetLeftPoint());
+            verticies.Add(m_net.m_segments[i].GetLeftPoint());
         }
-        verticies.Add(m_net.segments[m_net.segments.Length-1].GetRightPoint());
+        verticies.Add(m_net.m_segments[m_net.m_segments.Length-1].GetRightPoint());
     }
 	void Update () 
     {
