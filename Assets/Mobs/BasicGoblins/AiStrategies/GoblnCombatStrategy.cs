@@ -17,6 +17,7 @@ public class GoblinCombatStrategy : BasicSteeringStrategy {
     {
         IEnumerable<GameObject> hitsTemp = from u in BasicSteeringUtility.GetForwardObjectsList(controller, distance)
                                            where TargetTags.Contains(u.collider.tag)
+                                           where u.collider.gameObject!=controller.gameObject
                                            orderby -u.point.x
                                            select u.collider.gameObject;
         controller.Targets = new List<GameObject>(hitsTemp);

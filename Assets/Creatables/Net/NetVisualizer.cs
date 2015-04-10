@@ -26,6 +26,7 @@ public class NetVisualizer : MonoBehaviour
     }
     void DrawMesh()
     {
+        transform.rotation = Quaternion.identity;
         GetVertecies();
         Vector2 start = verticies[0];
         Vector2 finish = verticies[verticies.Count - 1];
@@ -33,13 +34,13 @@ public class NetVisualizer : MonoBehaviour
         Vector2[] uv = currentMesh.uv;
         Vector3[] newVerticies = currentMesh.vertices;
         int[] triangles = currentMesh.triangles;
-        uv[0] = new Vector2(0,0);
+        uv[0] = new Vector2(0, 0);
         uv[1] = new Vector2(0, 0);
         uv[newVerticies.Length - 1] = new Vector2((verticies.Count - 1) % 2, 0);
         uv[newVerticies.Length - 2] = new Vector2((verticies.Count - 1) % 2, 0);
         for(int i=0; i<verticies.Count; i++)
         {
-            newVerticies[2 * i + 1] = verticies[i];
+            newVerticies[2 * i + 1] = verticies[i] ;
             Vector2 proj = start + ((verticies[i].x - start.x) / dir.x) * dir;
             newVerticies[2 * i] = proj;
         }
@@ -68,14 +69,31 @@ public class NetVisualizer : MonoBehaviour
         verticies.Clear();
         for(int i=0; i<m_net.m_segments.Length; i++)
         {
-            verticies.Add(m_net.m_segments[i].GetLeftPoint());
+            verticies.Add(m_net.m_segments[i].GetLeftPoint() - new Vector2(transform.position.x, transform.position.y));
         }
-        verticies.Add(m_net.m_segments[m_net.m_segments.Length-1].GetRightPoint());
+        verticies.Add(m_net.m_segments[m_net.m_segments.Length - 1].GetRightPoint() - new Vector2(transform.position.x, transform.position.y));
     }
 	void Update () 
     {
         DrawMesh();
 	}
-
+    /*void OnDrawGizmos()
+    {
+        GetVertecies();
+        Debug.Log(verticies.Count);
+        Gizmos.color = Color.red;
+        Vector2 start = verticies[0] + new Vector2(transform.position.x, transform.position.y);
+        Vector2 finish = verticies[verticies.Count - 1] + new Vector2(transform.position.x, transform.position.y);
+        Vector2 dir = finish - start;
+        for (int i = 0; i < verticies.Count; i++)
+        {
+            
+            Vector2 proj = start + (( verticies[i].x+transform.position.x - start.x) / dir.x) * dir;
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(proj, 0.1f);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(verticies[i]+new Vector2(transform.position.x, transform.position.y), 0.1f);
+        }
+    }*/
     
 }
