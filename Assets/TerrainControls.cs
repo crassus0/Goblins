@@ -70,7 +70,7 @@ public class TerrainControls : PhysicsObject
 	{
 	}
 
-	protected override void OnHit(HitInfo info)
+	public override void OnHit(HitInfo info)
 	{
 	}
 

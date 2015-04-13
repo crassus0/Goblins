@@ -17,10 +17,11 @@ public class GoblinCombatStrategy : BasicSteeringStrategy {
     {
         IEnumerable<GameObject> hitsTemp = from u in BasicSteeringUtility.GetForwardObjectsList(controller, distance)
                                            where TargetTags.Contains(u.collider.tag)
-                                           where u.collider.gameObject!=controller.gameObject
+                                           where u.collider.gameObject != controller.gameObject
                                            orderby -u.point.x
                                            select u.collider.gameObject;
         controller.Targets = new List<GameObject>(hitsTemp);
+        
     }
     protected GoblinCombatStrategy()
     {
@@ -42,13 +43,9 @@ public class GoblinCombatStrategy : BasicSteeringStrategy {
         else 
         {
             GameObject mainTarget = steering.Targets[0];
-            if (mainTarget.GetComponent<Collider2D>().bounds.min.x - steering.GetComponent<Collider2D>().bounds.max.x > 0.1)
+            if (!(mainTarget.tag == "Enemy"))
             {
-                steering.GetComponent<GoblinLocomotion>().MoveForward(20 * Time.deltaTime / Time.fixedDeltaTime);
-            }
-            else if (mainTarget.tag != "Enemy")
-            {
-                steering.GetComponent<GoblinLocomotion>().Kick(mainTarget);
+                steering.GetComponent<GoblinLocomotion>().Kick(mainTarget.GetComponent<PhysicsObject>());
             }
         }
     }

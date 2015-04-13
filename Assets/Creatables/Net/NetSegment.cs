@@ -1,25 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NetSegment : PhysicsObject {
+public class NetSegment : PhysicsObject
+{
 
-	// Use this for initialization
+    // Use this for initialization
     float m_size;
     public NetController m_parentNet;
-	protected override void Start () 
+    protected override void Start()
     {
-        
+
         m_size = GetComponent<BoxCollider2D>().size.x;
-	}
-	
-	// Update is called once per frame
-	void Update () 
+    }
+
+    // Update is called once per frame
+    void Update()
     {
-        
-	}
+
+    }
     protected override void FixedUpdate()
     {
-        if(rigidbody2D.velocity.y>0)
+        if (rigidbody2D.velocity.y > 0)
         {
             rigidbody2D.AddForce(new Vector2(0, -rigidbody2D.velocity.y));
         }
@@ -53,9 +54,11 @@ public class NetSegment : PhysicsObject {
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
+        m_parentNet.AddTarget(collision.collider.gameObject);
     }
 
     protected override void OnCollisionExit2D(Collision2D collision)
     {
+        m_parentNet.RemoveTarget(collision.collider.gameObject);
     }
 }

@@ -9,7 +9,8 @@ public static class BasicSteeringUtility
     {
         Collider2D controllerCollider = controller.GetComponent<Collider2D>();
         float xMax = controllerCollider.bounds.max.x;
-        float yMax = controllerCollider.bounds.max.y;
+        float xMin = controllerCollider.bounds.max.x;
+        float yMax = controllerCollider.bounds.min.y;
         float yMin = controllerCollider.bounds.min.y;
         Vector2 dirVector = new Vector2(range, yMax - yMin);
         HashSet<RaycastHit2D> hits = new HashSet<RaycastHit2D>(Physics2D.RaycastAll(new Vector2(xMax, yMin), dirVector, dirVector.magnitude, Constants.RaycastMaskPhysics));

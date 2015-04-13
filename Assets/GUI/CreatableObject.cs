@@ -36,6 +36,7 @@ public abstract class CreatableObject:PhysicsObject
     {
         GetComponent<Collider2D>().isTrigger = false;
         GetComponent<Rigidbody2D>().isKinematic = false;
+        gameObject.layer = LayerMask.NameToLayer("Physics Objects");
         Level.CurrentLevel.CreateObject(this);
     }
 }

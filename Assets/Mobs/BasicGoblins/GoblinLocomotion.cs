@@ -15,9 +15,17 @@ public class GoblinLocomotion : BasicLocomotion
     public float m_kickCooldown = 1;
     public float m_kickEnergy = 20;
     float m_kickTime;
+
+ 
+    protected override void Start()
+    {
+        base.Start();
+        HitRange = m_defaulHitRange;
+        MaxSpeed = m_defaultMaxSpeed;
+    }
     public override void MoveForward(float speed)
 	{
-        if (GetComponent<Rigidbody2D>().velocity.magnitude < 1 || Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.right)<0)
+        if (GetComponent<Rigidbody2D>().velocity.magnitude < MaxSpeed|| Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.right)<0)
            GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(speed, 0));
         
 	}
@@ -34,13 +42,21 @@ public class GoblinLocomotion : BasicLocomotion
         transform.eulerAngles=new Vector3(0,0,angle);
         //Debug.Log(transform.rotation.eulerAngles);
     }
-    public override void Kick(GameObject target)
+    public override void Kick(PhysicsObject target)
     {
         if(m_kickTime>0)return;
-        HitInfo info=new HitInfo();
-        info.hitEnergy=m_kickEnergy;
-        target.SendMessage("OnHit", info );
-        GetComponent<Rigidbody2D>().velocity = -transform.right.normalized;
+        if (GetComponent<Collider2D>().bounds.max.x - target.GetExtents().min.x > HitRange)
+        {
+            MoveForward(40*Time.deltaTime/Time.fixedTime);
+        }
+        else
+        {
+            HitInfo info = new HitInfo();
+            info.hitEnergy = m_kickEnergy;
+            target.OnHit(info);
+            GetComponent<Rigidbody2D>().velocity = -transform.right.normalized;
+            
+        }
         m_kickTime = m_kickCooldown;
     }
     protected override void Update()

@@ -19,17 +19,17 @@ public abstract class PhysicsObject : MonoBehaviour
     public abstract int DestructionPrice { get; }
     protected virtual void Awake()
     {
-        m_rigidbody=GetComponent<Rigidbody2D>();
+        m_rigidbody = GetComponent<Rigidbody2D>();
     }
-	protected abstract  void Start();
+    protected abstract void Start();
 
-	protected abstract void FixedUpdate();
-	
+    protected abstract void FixedUpdate();
+
     protected abstract void OnCollisionEnter2D(Collision2D collision);
-     
+
     protected abstract void OnCollisionExit2D(Collision2D collision);
 
-    protected virtual void OnHit(HitInfo info)
+    public virtual void OnHit(HitInfo info)
     {
         Strength -= info.hitEnergy;
         if (Strength <= 0)
@@ -45,7 +45,7 @@ public abstract class PhysicsObject : MonoBehaviour
         Vector2 raycastOrigin = transform.position;
         float maxHeight = collider.bounds.max.y;
         IEnumerable<RaycastHit2D> hits = Physics2D.RaycastAll(raycastOrigin, Vector2.up, 1000, Constants.RaycastMaskPhysics);
-        if (hits.Any() )
+        if (hits.Any())
         {
             float max = hits.Max(x => x.point.y);
             maxHeight = max > maxHeight ? max : maxHeight;
@@ -66,12 +66,16 @@ public abstract class PhysicsObject : MonoBehaviour
         }
         return maxHeight;
     }
+    public virtual Bounds GetExtents()
+    {
+        return GetComponent<Collider2D>().bounds;
+    }
 }
 public struct HitInfo
 {
     public Vector2 velocity;
     public float mass;
     public float hitEnergy;
-    
+
 }
 

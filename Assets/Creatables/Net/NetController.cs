@@ -1,9 +1,46 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class NetController : CreatableObject {
     public NetVisualizer m_visualizer;
     public NetSegment[] m_segments;
+
+    List<BasicLocomotion> m_nettedObjects = new List<BasicLocomotion>();
+    List<int> m_nettingSegmentsCount = new List<int>();
+    public void AddTarget(GameObject target)
+    {
+        BasicLocomotion locomotion = target.GetComponent<BasicLocomotion>();
+        if(locomotion!=null)
+        {
+            int index = m_nettedObjects.IndexOf(locomotion);
+            if (index < 0)
+            {
+                m_nettedObjects.Add(locomotion);
+                m_nettingSegmentsCount.Add(0);
+            }
+            else
+            {
+                m_nettingSegmentsCount[index]++;
+            }
+        }
+    }
+    public void RemoveTarget(GameObject target)
+    {
+        BasicLocomotion locomotion = target.GetComponent<BasicLocomotion>();
+        if (locomotion != null)
+        {
+            int index = m_nettedObjects.IndexOf(locomotion);
+            if (index >= 0)
+            {
+                m_nettingSegmentsCount[index]--;
+                if (m_nettingSegmentsCount[index] == 0)
+                {
+                    m_nettingSegmentsCount.RemoveAt(index);
+                    m_nettedObjects.RemoveAt(index);
+                }
+            }
+        }
+    }
     protected override void Start()
     {
 
@@ -15,7 +52,7 @@ public class NetController : CreatableObject {
 
     public override int Price
     {
-        get { return 100; }
+        get { return 20; }
     }
 
     public override int DestructionPrice
@@ -29,7 +66,13 @@ public class NetController : CreatableObject {
     }
     protected void Update()
     {
-
+        for(int i = 0; i<m_nettedObjects.Count; i++)
+        {
+            if(m_nettingSegmentsCount[i]>0)
+            {
+                m_nettedObjects[i].Stuppefy();
+            }
+        }
     }
     protected override void OnCollisionEnter2D(Collision2D collision)
     {

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GoblinPhysics : PhysicsObject {
     protected float m_energy{get;set;}
+
     protected override void Start()
     {
     }

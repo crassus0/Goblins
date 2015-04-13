@@ -12,15 +12,23 @@ using UnityEngine;
 
 public abstract class BasicLocomotion : MonoBehaviour
 {
+    public float HitRange { get; set; }
+    public float m_defaulHitRange = 0.1f;
+    public float MaxSpeed { get; set; }
+    public float m_defaultMaxSpeed = 1;
 	protected virtual void Start()
 	{
 	}
 
 	protected virtual void Update()
 	{
+        MaxSpeed = m_defaultMaxSpeed;
 	}
-
+    public void Stuppefy()
+    {
+        MaxSpeed = 0;
+    }
 	public abstract void MoveForward(float speed);
-    public abstract void Kick(GameObject target);
+    public abstract void Kick(PhysicsObject target);
 }
 
