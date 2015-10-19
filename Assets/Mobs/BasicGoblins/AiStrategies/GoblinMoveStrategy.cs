@@ -27,17 +27,24 @@ public class GoblinMoveStrategy : BasicSteeringStrategy
     public virtual void SteerPhysics(BasicSteering parent)
     {
         GoblinSteering parentController = parent as GoblinSteering;
-        Vector2 normal = parentController.SurfaceContact.normal;
-        if (normal == Vector2.zero)
-            normal = Vector2.up;
-        float angle = 0;
-        angle = Vector2.Angle(parentController.transform.up, normal) * Mathf.Sign(parentController.transform.up.x - normal.x);
-        angle = Utility.NormalizeAngle(angle);
-        parentController.GetComponent<GoblinLocomotion>().MoveForward(20);
-        parentController.GetComponent<GoblinLocomotion>().KeepBalance(angle);
-        if (parentController.GetComponent<Rigidbody2D>().velocity.magnitude < 0.001f && parentController.SurfaceContact.normal != Vector2.zero)
+        if (parentController.Stopped)
         {
-            parentController.GetComponent<GoblinLocomotion>().StandUp(parentController.SurfaceContact.normal);
+            parentController.Stopped = false;
+        }
+        else
+        {
+            Vector2 normal = parentController.SurfaceContact.normal;
+            if (normal == Vector2.zero)
+                normal = Vector2.up;
+            float angle = 0;
+            angle = Vector2.Angle(parentController.transform.up, normal) * Mathf.Sign(parentController.transform.up.x - normal.x);
+            angle = Utility.NormalizeAngle(angle);
+            parentController.GetComponent<GoblinLocomotion>().MoveForward(20);
+            parentController.GetComponent<GoblinLocomotion>().KeepBalance(angle);
+            if (parentController.GetComponent<Rigidbody2D>().velocity.magnitude < 0.001f && parentController.SurfaceContact.normal != Vector2.zero)
+            {
+                parentController.GetComponent<GoblinLocomotion>().StandUp(parentController.SurfaceContact.normal);
+            }
         }
     }
 
@@ -65,7 +72,14 @@ public class GoblinMoveStrategy : BasicSteeringStrategy
         GoblinCombatStrategy.CheckTargets(steering);
         if(steering.Targets.Count!=0)
         {
-            controller.SetStrategy(GoblinCombatStrategy.Instance());
+            if (steering.Targets[0].tag != "Enemy")
+            {
+                controller.SetStrategy(GoblinCombatStrategy.Instance());
+            }
+            else if (steering.Targets[0].GetComponent<PhysicsObject>().GetExtents().min.x-steering.GetComponent<GoblinPhysics>().GetExtents().max.x<0.1)
+            {
+                steering.Stopped = false;
+            }
         }
  
     }

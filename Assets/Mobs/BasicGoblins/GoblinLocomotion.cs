@@ -15,23 +15,34 @@ public class GoblinLocomotion : BasicLocomotion
     public float m_kickCooldown = 1;
     public float m_kickEnergy = 20;
     float m_kickTime;
-
+    Rigidbody2D rigidbody2D;
  
     protected override void Start()
     {
         base.Start();
         HitRange = m_defaulHitRange;
         MaxSpeed = m_defaultMaxSpeed;
+        rigidbody2D = GetComponent<Rigidbody2D>();
     }
     public override void MoveForward(float speed)
 	{
-        if (GetComponent<Rigidbody2D>().velocity.magnitude < MaxSpeed|| Vector2.Dot(GetComponent<Rigidbody2D>().velocity, transform.right)<0)
-           GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(speed, 0));
+        if (rigidbody2D.velocity.magnitude < MaxSpeed || Vector2.Dot(rigidbody2D.velocity, transform.right) < 0)
+            rigidbody2D.AddRelativeForce(new Vector2(speed, 0));
         
 	}
+    public virtual void PushForward(float speed)
+    {
+        
+        if (rigidbody2D.velocity.magnitude < MaxSpeed || Vector2.Dot(rigidbody2D.velocity, transform.right) < 0)
+        {
+            
+            rigidbody2D.MovePosition(transform.position + transform.right * speed * Time.deltaTime / Time.fixedDeltaTime);
+        }
+        
+    }
     public void KeepBalance(float angle)
     {
-        GetComponent<Rigidbody2D>().angularVelocity = angle;
+        rigidbody2D.angularVelocity = angle;
         
         
     }
@@ -45,19 +56,20 @@ public class GoblinLocomotion : BasicLocomotion
     public override void Kick(PhysicsObject target)
     {
         if(m_kickTime>0)return;
-        if (GetComponent<Collider2D>().bounds.max.x - target.GetExtents().min.x > HitRange)
+        if (target.GetExtents().min.x-GetComponent<Collider2D>().bounds.max.x > HitRange)
         {
-            MoveForward(40*Time.deltaTime/Time.fixedTime);
+
+            PushForward(0.5f);
         }
         else
         {
             HitInfo info = new HitInfo();
             info.hitEnergy = m_kickEnergy;
             target.OnHit(info);
-            GetComponent<Rigidbody2D>().velocity = -transform.right.normalized;
-            
+            rigidbody2D.velocity = -transform.right.normalized;
+            m_kickTime = m_kickCooldown;
         }
-        m_kickTime = m_kickCooldown;
+        
     }
     protected override void Update()
     {

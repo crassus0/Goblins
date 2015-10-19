@@ -13,8 +13,8 @@ public class GoblinSteering : BasicSteering
 {
     public ContactPoint2D SurfaceContact { get; set; }
     public List<GameObject> Targets { get; set; }
-    public bool ForcedTargets;
-
+    public bool Stopped { get; set; }
+    
     HashSet<GameObject> m_terrain = new HashSet<GameObject>();
     //float m_colliderRatio;
     protected override void Start()
@@ -24,7 +24,7 @@ public class GoblinSteering : BasicSteering
         SurfaceContact = new ContactPoint2D();
         //SurfaceContact.normal = Vector2.up;
         Targets = new List<GameObject>();
-        ForcedTargets = false;
+        Stopped = false;
         SetStrategy(GoblinFloatStrategy.Instance());
     }
     protected void OnCollisionEnter2D(Collision2D collision)

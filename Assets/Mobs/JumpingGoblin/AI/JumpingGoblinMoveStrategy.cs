@@ -11,6 +11,7 @@ using System.Text;
 using UnityEngine;
 public class JumpingGoblinMoveStrategy : GoblinMoveStrategy
 {
+    public static readonly HashSet<string> TargetJumpTags = new HashSet<string>(new string[] { "ShootingObject", "DestroyableObject" });
     public static new JumpingGoblinMoveStrategy Instance()
     {
         if (s_strategy == null)
@@ -33,8 +34,25 @@ public class JumpingGoblinMoveStrategy : GoblinMoveStrategy
         GoblinCombatStrategy.CheckTargets(steering,2);
         if (steering.Targets.Count != 0)
         {
-            controller.SetStrategy(JumpingGoblinCombatStrategy.Instance());
+            GameObject mainTarget = steering.Targets[0];
+            if (mainTarget.tag == "Enemy")
+            {
+                if (mainTarget.GetComponent<PhysicsObject>().GetExtents().min.x - steering.GetComponent<PhysicsObject>().GetExtents().max.x < 0.1)
+                {
+                    steering.Stopped = true;
+                }
+            }
+            else if (TargetJumpTags.Contains(mainTarget.tag) && mainTarget.GetComponent<PhysicsObject>().GetExtents().min.x - steering.GetComponent<PhysicsObject>().GetExtents().max.x > 1.5)
+            {
+                float height = mainTarget.GetComponent<PhysicsObject>().FindMaxHeight() - steering.GetComponent<PhysicsObject>().GetExtents().min.y;
+                controller.GetComponent<JumpingGoblinLocomotion>().Jump(new Vector2(height / 4, height));
+            }
+            else
+            {
+                controller.SetStrategy(JumpingGoblinCombatStrategy.Instance());
+            }
         }
+        
 
     }
 }

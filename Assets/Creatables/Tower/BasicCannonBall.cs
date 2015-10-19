@@ -7,8 +7,9 @@ public class BasicCannonBall : PhysicsObject {
     public float Damage = 100;
     List<GameObject> m_targets = new List<GameObject>();
     Animator m_animator;
-    int m_hitHash = Animator.StringToHash("Hit");
-    int m_destroyedNameHash = Animator.StringToHash("Base Layer.Destroyed");
+    float m_hitAnimationCooldown = 0.1f;
+    bool m_hit = false;
+    int m_hitHash = Animator.StringToHash("HitTrigger");
     protected override void Start()
     {
         m_animator = transform.GetComponentInChildren<Animator>();
@@ -34,9 +35,12 @@ public class BasicCannonBall : PhysicsObject {
     void Update()
     {
         AnimatorStateInfo info = m_animator.GetCurrentAnimatorStateInfo(0);
-
-        if (info.fullPathHash == m_destroyedNameHash)
-            Destroy(gameObject);
+        if (m_hit)
+        {
+            m_hitAnimationCooldown -= Time.deltaTime;
+            if (m_hitAnimationCooldown<=0)
+                Destroy(gameObject);
+        }
     }
     
 
@@ -56,6 +60,7 @@ public class BasicCannonBall : PhysicsObject {
             if(x!= null)
                 x.SendMessage("OnHit", info);
         }
+        m_hit = true;
     }
     protected override void OnCollisionExit2D(Collision2D collision)
     {

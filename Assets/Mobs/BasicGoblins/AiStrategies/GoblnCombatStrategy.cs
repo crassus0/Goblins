@@ -35,7 +35,7 @@ public class GoblinCombatStrategy : BasicSteeringStrategy {
             steering.SetStrategy(GoblinFloatStrategy.Instance());
         }
         CheckTargets(steering);
-        if (steering.Targets.Count == 0)
+        if (steering.Targets.Count == 0 || steering.Targets[0].tag == "Enemy")
         {
             steering.SetStrategy(GoblinMoveStrategy.Instance());
 
@@ -43,10 +43,9 @@ public class GoblinCombatStrategy : BasicSteeringStrategy {
         else 
         {
             GameObject mainTarget = steering.Targets[0];
-            if (!(mainTarget.tag == "Enemy"))
-            {
-                steering.GetComponent<GoblinLocomotion>().Kick(mainTarget.GetComponent<PhysicsObject>());
-            }
+            
+            steering.GetComponent<GoblinLocomotion>().Kick(mainTarget.GetComponent<PhysicsObject>());
+
         }
     }
     public virtual void SteerPhysics(BasicSteering controller)
